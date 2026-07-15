@@ -7,6 +7,7 @@ export type ProductItem = {
   emoji: string;
   name: string;
   category?: string;
+  expDate: Date;
   storage?: StorageLocation[];
 };
 
@@ -16,6 +17,11 @@ export type ProductsDataset = {
   items: ProductItem[];
 };
 
+export type ExpirationStatus = {
+  expired?: number;
+  soon?: number;
+  fresh?: number;
+}
+
 export const productsRu = raw as ProductsDataset;
 export const productItems: ProductItem[] = productsRu.items;
-

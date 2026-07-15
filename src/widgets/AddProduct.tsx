@@ -13,7 +13,7 @@ export default function AddProduct() {
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const lastValidDateInputRef = useRef("");
   const [month, setMonth] = useState(new Date());
-  const [inputValue, setInputValue] = useState("");
+  const [dateValue, setDateValue] = useState("");
   const [productName, setProductName] = useState("");
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
@@ -32,14 +32,14 @@ export default function AddProduct() {
 
   const handleDayPickerSelect = (date: Date | undefined) => {
     if (!date) {
-      setInputValue("");
+      setDateValue("");
       lastValidDateInputRef.current = "";
       setSelectedDate(undefined);
     } else {
       setSelectedDate(date);
       const masked = format(date, "dd/MM/yyyy");
       lastValidDateInputRef.current = masked;
-      setInputValue(masked);
+      setDateValue(masked);
     }
     setIsCalendarOpen(false);
   };
@@ -48,7 +48,7 @@ export default function AddProduct() {
     const { masked, isComplete } = maskDateInput(e.target.value);
 
     if (!isComplete) {
-      setInputValue(masked);
+      setDateValue(masked);
       setSelectedDate(undefined);
       return;
     }
@@ -59,7 +59,7 @@ export default function AddProduct() {
       isValid(parsedDate) && format(parsedDate, "dd/MM/yyyy") === masked;
 
     if (!strictlyMatchesMask) {
-      setInputValue(lastValidDateInputRef.current);
+      setDateValue(lastValidDateInputRef.current);
       setSelectedDate(
         lastValidDateInputRef.current
           ? parse(lastValidDateInputRef.current, "dd/MM/yyyy", new Date())
@@ -69,7 +69,7 @@ export default function AddProduct() {
     }
 
     lastValidDateInputRef.current = masked;
-    setInputValue(masked);
+    setDateValue(masked);
     setSelectedDate(parsedDate);
     setMonth(parsedDate);
   };
@@ -78,7 +78,7 @@ export default function AddProduct() {
   const calendarLabel = `Calendar, ${format(month, "MMMM yyyy")}`;
 
   return (
-    <div className="w-full md:max-w-[350px] h-auto flex flex-col gap-5 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5">
+    <div className="w-full h-fit md:max-w-[312px] h-auto flex flex-col gap-5 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
       <div>
         <h2 className="text-2xl text-[#687063] font-bold">Добавить продукт</h2>
 
@@ -140,7 +140,7 @@ export default function AddProduct() {
           className="w-full h-12 px-4 text-sm text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
           id="date-input"
           type="text"
-          value={inputValue}
+          value={dateValue}
           placeholder="дд/мм/гггг"
           onChange={handleInputChange}
         />
@@ -198,8 +198,12 @@ export default function AddProduct() {
 
       <button
         onClick={() => {
-          if (selectedProduct) {
-            addProduct(selectedProduct);
+          if (selectedProduct && selectedDate) {
+            addProduct({ ...selectedProduct, expDate: selectedDate });
+            setProductName("");
+            setDateValue("");
+            setSelectedDate(undefined);
+            setMonth(new Date());
           }
         }}
         className="flex justify-center items-center w-full h-6 transition-transform duration-100 ease-in-out active:translate-y-[3px] active:shadow-md active:bg-[#4c6046] hover:shadow-md bg-[#6F8D67] hover:bg-[#4c6046] text-white text-sm py-4 px-5 rounded-[22px]"
