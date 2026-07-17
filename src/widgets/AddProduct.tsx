@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format, isValid, parse } from "date-fns";
@@ -7,7 +7,13 @@ import { maskDateInput } from "@/utils/maskDateInput";
 import { productItems, type ProductItem } from "@/data/products";
 import { useAddedProducts } from "@/store/addedProductsStore";
 
-export default function AddProduct() {
+export default function AddProduct({
+  searchFirstProduct,
+  setSearchFirstProduct,
+}: {
+  searchFirstProduct: boolean;
+  setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const calendarRef = useRef<HTMLDivElement | null>(null);
@@ -19,8 +25,29 @@ export default function AddProduct() {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
     null,
   );
+  const firstSeach = useRef<HTMLInputElement | null>(null);
 
   const addProduct = useAddedProducts((state) => state.addProduct);
+
+  useEffect(() => {
+    if (searchFirstProduct) {
+      if (window.innerWidth < window.innerHeight) {
+        if (searchFirstProduct) {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
+          firstSeach.current?.focus();
+          setSearchFirstProduct(false);
+        }
+      } else {
+        if (searchFirstProduct) {
+          firstSeach.current?.focus();
+          setSearchFirstProduct(false);
+        }
+      }
+    }
+  }, [searchFirstProduct]);
 
   const productSuggestions: ProductItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
@@ -78,7 +105,7 @@ export default function AddProduct() {
   const calendarLabel = `Calendar, ${format(month, "MMMM yyyy")}`;
 
   return (
-    <div className="w-full h-fit md:max-w-[312px] h-auto flex flex-col gap-5 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
+    <div className="w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col gap-5 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
       <div>
         <h2 className="text-2xl text-[#687063] font-bold">Добавить продукт</h2>
 
@@ -93,8 +120,9 @@ export default function AddProduct() {
           Название
         </label>
         <input
+          ref={firstSeach}
           type="text"
-          placeholder="Введите название"
+          placeholder="Начните вводить название"
           className="w-full h-12 px-4 text-sm text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
           value={productName}
           onChange={(e) => {
@@ -199,7 +227,11 @@ export default function AddProduct() {
       <button
         onClick={() => {
           if (selectedProduct && selectedDate) {
-            addProduct({ ...selectedProduct, expDate: selectedDate });
+            addProduct({
+              ...selectedProduct,
+              expDate: selectedDate,
+              addedDate: new Date(),
+            });
             setProductName("");
             setDateValue("");
             setSelectedDate(undefined);

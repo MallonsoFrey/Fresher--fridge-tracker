@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-* {
+html {
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 html {
@@ -29,6 +34,7 @@ input:active {
   border: none;
 }
 
+
 .rdp-chevron {
   fill: #4f574d !important;
 }
@@ -46,18 +52,35 @@ input:active {
   color: #4f574d;
 }
 
-@keyframes tilt {
-  from {
-    transform: rotate(-10deg);
-  }
-  to {
-    transform: rotate(10deg);
-  }
+.spoilt-delete,
+.soon-delete,
+.fresh-delete {
+  transition: all 0.3s ease-in-out;
 }
 
-.elem-tilt-hover:hover {
-  animation-name: tilt;
-  animation-duration: 500ms;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+.spoilt-delete:hover,
+.soon-delete:hover,
+.fresh-delete:hover {
+  background-color: #f3dddd;
+  color: transparent;
+}
+
+.spoilt-delete:hover::before,
+.soon-delete:hover::before,
+.fresh-delete:hover::before {
+  content: "Удалить";
+  position: absolute;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9a5752;
+}
+
+.soon-delete:hover::before {
+  margin-left: -3px;
+}
+
+.spoilt-delete:hover::before {
+  margin-left: 10px;
 }

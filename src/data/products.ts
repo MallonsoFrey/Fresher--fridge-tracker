@@ -8,6 +8,7 @@ export type ProductItem = {
   name: string;
   category?: string;
   expDate: Date;
+  addedDate: Date;
   storage?: StorageLocation[];
 };
 
@@ -17,11 +18,7 @@ export type ProductsDataset = {
   items: ProductItem[];
 };
 
-export type ExpirationStatus = {
-  expired?: number;
-  soon?: number;
-  fresh?: number;
-}
+export type ExpirationStatus = "expired" | "soon" | "fresh";
 
 export const productsRu = raw as ProductsDataset;
 export const productItems: ProductItem[] = productsRu.items;

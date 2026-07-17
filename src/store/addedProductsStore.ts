@@ -1,11 +1,12 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 import { type ProductItem } from "@/data/products";
 
 type AddedProductsType = {
   addedProducts: ProductItem[];
 
   addProduct: (product: ProductItem) => void;
-}
+  deleteProduct: (productId: string) => void;
+};
 
 export const useAddedProducts = create<AddedProductsType>((set) => ({
   addedProducts: [],
@@ -14,4 +15,10 @@ export const useAddedProducts = create<AddedProductsType>((set) => ({
     set((state) => ({
       addedProducts: [...state.addedProducts, product],
     })),
-}))
+  deleteProduct: (productId: string) =>
+    set((state) => ({
+      addedProducts: state.addedProducts.filter(
+        (product) => product.id !== productId,
+      ),
+    })),
+}));
