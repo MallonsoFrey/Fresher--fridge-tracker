@@ -1,8 +1,13 @@
+import { useOnboardingStore } from "@/store/store";
+
 export default function EmptyFridge({
   setSearchFirstProduct,
 }: {
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const onboardingStep = useOnboardingStore((state) => state.currentStep);
+  const setNextStep = useOnboardingStore((state) => state.nextStep);
+
   return (
     <div className="text-center h-fit w-full flex flex-col justify-center items-center gap-5 p-5">
       <div>
@@ -44,7 +49,12 @@ export default function EmptyFridge({
       </div>
 
       <button
-        onClick={() => setSearchFirstProduct(true)}
+        onClick={() => {
+          if (onboardingStep === 0) {
+            setNextStep(1);
+          }
+          setSearchFirstProduct(true);
+        }}
         className="flex justify-center items-center w-full md:w-[300px] h-8 transition-transform duration-100 ease-in-out hover:shadow-md bg-[#E8EFE3] hover:bg-[#6F8D67] text-[#5D7155] hover:text-white border-none outline-none text-sm py-4 px-5 rounded-[22px]"
       >
         Добавить первый продукт

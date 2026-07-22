@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddProduct from "@widgets/AddProduct";
 import EmptyFridge from "@widgets/EmptyFridge";
 import AddedProducts from "@/widgets/AddedProducts";
-import { useAddedProducts } from "@/store/addedProductsStore";
+import { useAddedProducts } from "@/store/store";
 import ExpDateStats from "@/widgets/ExpDateStats";
 
 export default function Home() {

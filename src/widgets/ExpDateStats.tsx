@@ -1,4 +1,4 @@
-import { useAddedProducts } from "@/store/addedProductsStore";
+import { useAddedProducts } from "@/store/store";
 import { type ExpirationStatus, type ProductItem } from "@/data/products";
 import getProductWord from "@/utils/getProductWord";
 import getDayWord from "@/utils/getDayWord";
@@ -38,11 +38,17 @@ export default function ExpDateStats() {
   const theLastAdded: ProductItem =
     expDates["fresh"]?.[expDates["fresh"].length - 1];
 
-  const soonToExpire: ProductItem | null = expDates["soon"] ? expDates["soon"].length > 1 ? expDates["soon"]?.sort(
-    (a, b) => a.expDate.getTime() - b.expDate.getTime(),
-  )[0] : expDates["soon"][0] : null;
+  const soonToExpire: ProductItem | null = expDates["soon"]
+    ? expDates["soon"].length > 1
+      ? expDates["soon"]?.sort(
+          (a, b) => a.expDate.getTime() - b.expDate.getTime(),
+        )[0]
+      : expDates["soon"][0]
+    : null;
   const soonToExpDate = soonToExpire?.expDate.getTime();
-  const timeDif = soonToExpDate ? (soonToExpDate - currentDate) / (1000 * 60 * 60 * 24) : 0;
+  const timeDif = soonToExpDate
+    ? (soonToExpDate - currentDate) / (1000 * 60 * 60 * 24)
+    : 0;
   const difInDays = Math.floor(timeDif);
 
   return (
@@ -93,10 +99,14 @@ export default function ExpDateStats() {
             Ближайший:
             <span className="font-bold flex justify-between items-end">
               {soonToExpire?.name}
-              {difInDays == 0 ? <span className="font-bold">Испортится сегодня</span>: <span className="font-normal">
-              Через <span className="font-bold">{difInDays}</span>
-              {getDayWord(difInDays)}
-              </span>}
+              {difInDays == 0 ? (
+                <span className="font-bold">Испортится сегодня</span>
+              ) : (
+                <span className="font-normal">
+                  Через <span className="font-bold">{difInDays}</span>
+                  {getDayWord(difInDays)}
+                </span>
+              )}
             </span>
           </div>
         </div>
