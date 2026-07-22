@@ -30,20 +30,24 @@ export default function AddProduct({
   const [error, setError] = useState(false);
 
   const addProduct = useAddedProducts((state) => state.addProduct);
+  const addedProducts = useAddedProducts((state) => state.addedProducts);
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
   const setNextStep = useOnboardingStore((state) => state.nextStep);
-  console.log(onboardingStep);
+
+  const scrollDown = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+    firstSeach.current?.focus();
+  };
 
   useEffect(() => {
     if (!searchFirstProduct) return;
 
     const timeoutId = window.setTimeout(() => {
       if (window.innerWidth < window.innerHeight) {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-        firstSeach.current?.focus();
+        scrollDown();
       } else {
         if (onboardingStep === 0) setNextStep(1);
         firstSeach.current?.focus();
@@ -111,6 +115,8 @@ export default function AddProduct({
   const calendarLabel = `Calendar, ${format(month, "MMMM yyyy")}`;
 
   useEffect(() => {
+    if (onboardingStep === 1) setNextStep(2);
+
     function handleClickOutside(event: MouseEvent) {
       if (
         calendarRef.current &&
@@ -131,7 +137,7 @@ export default function AddProduct({
   return (
     <>
       <div
-        className={`w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 ${onboardingStep === 1 ? "z-30" : onboardingStep === 2 ? "-z-20" : "z-0"}`}
+        className={`w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 ${onboardingStep === 1 ? "z-30" : ""}`}
       >
         <div className="mb-5">
           <h2 className="text-2xl text-[#687063] font-bold">
@@ -232,7 +238,7 @@ export default function AddProduct({
             </svg>
           </span>
           {isCalendarOpen && (
-            <div className="absolute z-50 mt-2 w-max rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg p-2 top-full left-0">
+            <div className="absolute z-50 md:mt-2 w-max rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg p-2 top-full left-0">
               <DayPicker
                 locale={ru}
                 weekStartsOn={1}
@@ -279,10 +285,53 @@ export default function AddProduct({
           Сохранить
         </button>
       </div>
+      <button
+        className={`md:hidden ${addedProducts.length > 1 ? "" : "hidden"} block fixed z-40 bottom-4 right-4 h-20 w-20 opacity-[0.8]`}
+        onClick={() => scrollDown()}
+      >
+        <svg
+          viewBox="-2.4 -2.4 28.80 28.80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#59744d"
+        >
+          <g
+            id="SVGRepo_bgCarrier"
+            stroke-width="0"
+            transform="translate(3.6000000000000014,3.6000000000000014), scale(0.7)"
+          >
+            <rect
+              x="-2.4"
+              y="-2.4"
+              width="28.80"
+              height="28.80"
+              rx="14.4"
+              fill="#e3efda"
+              strokeWidth="0"
+            ></rect>
+          </g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M12 8V16M16 12H8M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+              stroke="#59744d"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </button>
       {onboardingStep === 1 && (
         <div className="fixed z-20 inset-0 bg-black bg-opacity-50 flex items-start md:items-center justify-center">
-          <div className="relative md:left-[30%] md:top-[20%] top-[40%] w-[calc(100%-30px)] md:w-fit flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
-            <p>Вот здесь вы можете вводить продукт, который хотите добавить</p>
+          <div className="relative md:left-[30%] md:top-[20%] top-[30%] w-[calc(100%-30px)] md:w-fit flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
+            <p className="font-bold">
+              Вот здесь вы можете вводить продукт, который хотите добавить
+            </p>
             <div className="flex justify-end gap-3 mt-4">
               <button
                 onClick={() => {

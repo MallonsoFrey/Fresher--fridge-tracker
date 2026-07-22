@@ -1,7 +1,6 @@
 import { type ProductItem } from "@/data/products";
 import getDayWord from "@/utils/getDayWord";
-import { format } from "date-fns";
-import { ru } from "date-fns/locale";
+import getDifferenceInDays from "@/utils/getDifferenceInDays";
 
 type ProductCardProps = {
   product: ProductItem;
@@ -12,13 +11,7 @@ export default function ProductCard({
   product,
   onDeleteProduct,
 }: ProductCardProps) {
-  const currentDate = new Date().getTime();
-  const expDate = product.expDate.getTime();
-  const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);
-  const difInDays = Math.ceil(timeDif);
-  const parsedDate = format(new Date(product.expDate), "d MMMM", {
-    locale: ru,
-  });
+  const { difInDays, parsedDate } = getDifferenceInDays(product.expDate);
 
   return (
     <div
@@ -31,16 +24,34 @@ export default function ProductCard({
       <div className="flex flex-col gap-1 w-full leading-none">
         <div className="flex justify-between items-center">
           <span className="font-bold">{product.name}</span>
-          <span
-            onClick={() => onDeleteProduct(product.id)}
-            className={`cursor-pointer inline-block h-fit text-[10px] rounded-[100px] py-1 px-2 ${difInDays != null && difInDays < 0 ? "spoilt-delete  text-[#9A5752] bg-[#F3DDDD]" : difInDays != null && difInDays <= 3 ? "soon-delete text-[#866921] bg-[#F5E8BF]" : "fresh-delete text-[#59744D] bg-[#E3EFDA]"}`}
-          >
-            {difInDays != null && difInDays < 0
-              ? "Испортилось"
-              : difInDays != null && difInDays <= 3
-                ? "Скоро"
-                : "Свежее"}
-          </span>
+          <div className="flex gap-1 items-end">
+            <span
+              className={`inline-block h-fit text-[10px] rounded-[100px] py-1 px-2 ${difInDays != null && difInDays < 0 ? "spoilt-delete  text-[#9A5752] bg-[#F3DDDD]" : difInDays != null && difInDays <= 3 ? "soon-delete text-[#866921] bg-[#F5E8BF]" : "fresh-delete text-[#59744D] bg-[#E3EFDA]"}`}
+            >
+              {difInDays != null && difInDays < 0
+                ? "Испортилось"
+                : difInDays != null && difInDays <= 3
+                  ? "Скоро"
+                  : "Свежее"}
+            </span>
+            <svg
+              onClick={() => onDeleteProduct(product.id)}
+              className="h-4 w-4 hover:fill-[#98a292] cursor-pointer"
+              fill="#687063"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5 c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4 C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z"></path>{" "}
+              </g>
+            </svg>
+          </div>
         </div>
         <span className="text-xs">
           {difInDays != null && difInDays > 0

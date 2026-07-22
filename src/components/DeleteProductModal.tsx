@@ -23,7 +23,7 @@ export default function DeleteProductModal({
         <div className="flex justify-end gap-3 mt-4">
           <button
             onClick={() => setIsToDelete(false)}
-            className="transition-all duration-300 bg-[_rgba(236,242,230,0.9)] hover:bg-[#687063] hover:text-[_rgba(236,242,230,0.9)] py-2 px-4 rounded-[100px] cursor-pointer"
+            className="transition-all duration-300 hover:bg-[_rgba(236,242,230,0.9)] hover:text-[#687063] text-[_rgba(236,242,230,0.9)] bg-[#687063] py-2 px-4 rounded-[100px] cursor-pointer"
           >
             Отмена
           </button>

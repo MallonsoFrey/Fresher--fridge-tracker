@@ -13,14 +13,10 @@ html {
 }
 
 html {
+  color: #687063;
   margin: 0;
   padding: 0;
   height: auto;
-  background: linear-gradient(
-    180deg,
-    rgba(236, 242, 230, 0.9) 0%,
-    rgba(236, 242, 230, 0) 34%
-  );
 }
 
 body,
@@ -51,35 +47,16 @@ input:active {
   color: #4f574d;
 }
 
-.spoilt-delete,
-.soon-delete,
-.fresh-delete {
-  transition: all 0.3s ease-in-out;
-}
-
-.spoilt-delete:hover,
-.soon-delete:hover,
-.fresh-delete:hover {
-  background-color: #f3dddd;
-  color: transparent;
-}
-
-.spoilt-delete:hover::before,
-.soon-delete:hover::before,
-.fresh-delete:hover::before {
-  content: "Удалить";
-  position: absolute;
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9a5752;
-}
-
-.soon-delete:hover::before {
-  margin-left: -3px;
-}
-
-.spoilt-delete:hover::before {
-  margin-left: 10px;
+.gradient {
+  background: RGBA(236, 242, 230, 0.9);
+  background: linear-gradient(
+    178deg,
+    rgba(236, 242, 230, 0.9) 0%,
+    rgba(236, 242, 230, 0) 60%
+  );
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  inset: 0;
+  z-index: -10000;
 }

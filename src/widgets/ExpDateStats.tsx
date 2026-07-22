@@ -52,7 +52,10 @@ export default function ExpDateStats() {
   const difInDays = Math.floor(timeDif);
 
   return (
-    <div className="flex flex-col h-fit md:flex-row gap-3">
+    <div
+      className="flex pb-5 md:pb-0 overflow-x-auto
+md:overflow-hidden h-auto gap-3"
+    >
       {expDates["fresh"] && (
         <div className="flex gap-3 flex-col min-w-[218px] p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
           <div className="flex flex-row-reverse md:flex-row justify-between items-center">
@@ -64,14 +67,14 @@ export default function ExpDateStats() {
             </span>
           </div>
           <div>
-            <span className="text-[40px] md:text-lg font-bold mr-2">
+            <span className="text-[28px] md:text-lg font-bold mr-2">
               {expDates["fresh"].length}
             </span>
             <span className="text-[20px] font-bold md:text-[10px]">
               {getProductWord(expDates["fresh"].length)}
             </span>
           </div>
-          <div className="flex flex-col md:text-[10px] text-[#687063]">
+          <div className="flex flex-col text-[14px] md:text-[10px] text-[#687063]">
             Последнее добавление:
             <span className="font-bold">{theLastAdded.name}</span>
           </div>
@@ -88,16 +91,16 @@ export default function ExpDateStats() {
             </span>
           </div>
           <div>
-            <span className="text-[40px] md:text-lg font-bold mr-2">
+            <span className="text-[28px] md:text-lg font-bold mr-2">
               {expDates["soon"].length}
             </span>
             <span className="text-[20px] font-bold md:text-[10px]">
               {getProductWord(expDates["soon"].length)}
             </span>
           </div>
-          <div className="flex flex-col md:text-[10px] text-[#687063]">
+          <div className="flex text-[14px] flex-col md:text-[10px] text-[#687063]">
             Ближайший:
-            <span className="font-bold flex justify-between items-end">
+            <span className="font-bold flex-col flex-wrap flex justify-between md:items-end">
               {soonToExpire?.name}
               {difInDays == 0 ? (
                 <span className="font-bold">Испортится сегодня</span>
@@ -122,14 +125,14 @@ export default function ExpDateStats() {
             </span>
           </div>
           <div>
-            <span className="text-[40px] md:text-lg font-bold mr-2">
+            <span className="text-[28px] md:text-lg font-bold mr-2">
               {expDates["expired"].length}
             </span>
             <span className="text-[20px] font-bold md:text-[10px]">
               {getProductWord(expDates["expired"].length)}
             </span>
           </div>
-          <div className="flex font-bold md:text-[10px] text-[#687063]">
+          <div className="text-[14px] flex font-bold md:text-[10px] text-[#687063]">
             Не забудьте проверить холодильник
           </div>
         </div>
