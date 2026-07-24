@@ -1,11 +1,14 @@
-import raw from "./products.ru.json";
+import raw from "./products.json";
 
 export type StorageLocation = "fridge" | "freezer";
 
 export type ProductItem = {
   id: string;
   emoji: string;
-  name: string;
+  name: {
+    en: string;
+    ru: string;
+  };
   category?: string;
   expDate: Date;
   addedDate: Date;
@@ -14,11 +17,11 @@ export type ProductItem = {
 
 export type ProductsDataset = {
   version: number;
-  locale: "ru";
+  locale: "ru" | "en";
   items: ProductItem[];
 };
 
 export type ExpirationStatus = "expired" | "soon" | "fresh";
 
-export const productsRu = raw as ProductsDataset;
-export const productItems: ProductItem[] = productsRu.items;
+export const products = raw as ProductsDataset;
+export const productItems: ProductItem[] = products.items;

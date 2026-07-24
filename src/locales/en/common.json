@@ -1,0 +1,76 @@
+{
+  "emptyFridge": {
+    "title": "Welcome!",
+    "subtitle": "Your fridge is empty for now",
+    "description": "Start adding products, and <strong>FRESHER</strong> will help you track their expiration dates and remind you when it's time to use them.",
+    "examples": "For example",
+    "products": {
+      "milk": "Milk",
+      "eggs": "Eggs",
+      "cheese": "Cheese"
+    }
+  },
+  "addProduct": {
+    "title": "Add product",
+    "subtitle": "Keep your products fresh",
+    "productName": "Name",
+    "searchBar": "Start typing a product name",
+    "productExpDate": "Expiration date",
+    "calendarAriaLabel": "Open the calendar and select a date",
+    "error": "Please select a product and expiration date",
+    "onboarding": {
+      "description": "Here you can enter the product you want to add. Give it a try!"
+    }
+  },
+  "addedProducts": {
+    "title": "In your fridge",
+    "search": "Search...",
+    "filters": {
+      "all": "All",
+      "fresh": "Fresh",
+      "soon": "Expiring soon",
+      "spoilt": "Expired"
+    },
+    "onboarding": {
+      "title": "You've added your first product! 🎉",
+      "description": "From now on, your products will appear in the section ",
+      "widgetName": "\"In your fridge\""
+    }
+  },
+  "productCard": {
+    "status": {
+      "fresh": "Fresh",
+      "soon": "Soon",
+      "expired": "Expired"
+    },
+    "expires": {
+      "left": "Left:",
+      "today": "Expires today",
+      "expired": "Already expired :(",
+      "until": "Until "
+    }
+  },
+  "expDateStats": {
+    "fresh": "Fresh",
+    "soon": "Soon",
+    "expired": "Expired",
+    "products": "product",
+    "lastAdded": "Last added ",
+    "nearest": "Nearest ",
+    "spoilsToday": "Expires today",
+    "inDays": "In ",
+    "checkFridge": "Don't forget to check your fridge"
+  },
+  "deleteProductModal": {
+    "description": "Are you sure you want to delete this item?"
+  },
+  "buttons": {
+    "firstAddButton": "Add your first product",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "date": {
+    "today": "Today"
+  }
+}

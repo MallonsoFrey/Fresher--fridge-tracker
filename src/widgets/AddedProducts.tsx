@@ -4,6 +4,7 @@ import { useOnboardingStore } from "@/store/store";
 import DeleteProductModal from "../components/DeleteProductModal";
 import ProductCard from "@/components/ProductCard";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
+import { useTranslation } from "react-i18next";
 
 export default function AddedProducts() {
   const addedProducts = useAddedProducts((state) => state.addedProducts);
@@ -18,6 +19,9 @@ export default function AddedProducts() {
   );
   const [chosenFilter, setChosenFilter] = useState<string>("all");
   const [searchedProduct, setSearchedProduct] = useState<string>("");
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
 
   function onDeleteProduct(productId: string) {
     setIsToDelete(true);
@@ -25,7 +29,7 @@ export default function AddedProducts() {
   }
 
   const filteredProducts = addedProducts?.filter((product) => {
-    const { difInDays } = getDifferenceInDays(product.expDate);
+    const { difInDays } = getDifferenceInDays(product.expDate, currentLanguage);
 
     if (chosenFilter === "all") return true;
     if (chosenFilter === "soon" && difInDays > 0 && difInDays <= 3) return true;
@@ -35,42 +39,41 @@ export default function AddedProducts() {
   });
 
   const searchedProducts =
-    filteredProducts?.filter((product) => {
-      console.log(searchedProduct);
-      if (product.name.toLowerCase().startsWith(searchedProduct.toLowerCase()))
-        return true;
-      return false;
-    }) ?? [];
+    filteredProducts?.filter((product) =>
+      product?.name?.[currentLanguage]
+        .toLowerCase()
+        .includes(searchedProduct.toLowerCase()),
+    ) ?? [];
 
   return (
     <>
       <div className="w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
         {addedProducts.length > 0 && (
           <>
-            <ul className="leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] border-2 text-[#687063] w-full list-none list-inside items-center flex gap-5 justify-center text-center md:text-left">
+            <ul className="md:text-[12px] leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] border-2 text-[#687063] w-full list-none list-inside items-center flex gap-5 justify-center text-center md:text-left">
               <li
                 className={`cursor-pointer p-3 rounded-3xl ${chosenFilter === "all" ? "bg-white font-bold" : "bg-[#F6F4EE]"}`}
                 onClick={() => setChosenFilter("all")}
               >
-                Все
+                {t("addedProducts.filters.all")}
               </li>
               <li
                 className={`cursor-pointer p-3 rounded-3xl ${chosenFilter === "fresh" ? "bg-white font-bold" : "bg-[#F6F4EE]"}`}
                 onClick={() => setChosenFilter("fresh")}
               >
-                Свежее
+                {t("addedProducts.filters.fresh")}
               </li>
               <li
                 className={`cursor-pointer p-3 rounded-3xl ${chosenFilter === "soon" ? "bg-white font-bold" : "bg-[#F6F4EE]"}`}
                 onClick={() => setChosenFilter("soon")}
               >
-                Скоро испортится
+                {t("addedProducts.filters.soon")}
               </li>
               <li
                 className={`cursor-pointer p-3 rounded-3xl ${chosenFilter === "spoilt" ? "bg-white font-bold" : "bg-[#F6F4EE]"}`}
                 onClick={() => setChosenFilter("spoilt")}
               >
-                Испортилось
+                {t("addedProducts.filters.spoilt")}
               </li>
             </ul>
             <div className="relative w-full flex justify-start items-center">
@@ -98,7 +101,7 @@ export default function AddedProducts() {
                 </g>
               </svg>
               <svg
-                onClick={() => setSearchedProduct('')}
+                onClick={() => setSearchedProduct("")}
                 className="absolute right-3 h-4 w-4 hover:fill-[#98a292] cursor-pointer"
                 fill="#687063"
                 viewBox="0 0 32 32"
@@ -117,7 +120,7 @@ export default function AddedProducts() {
               <input
                 className="border-[#F4F2ECFA] border-2 rounded-[24px] ml-7 bg-transparent w-full h-8 pl-3"
                 type="text"
-                placeholder="Поиск..."
+                placeholder={t("addedProducts.search")}
                 value={searchedProduct}
                 onChange={(e) => setSearchedProduct(e.target.value)}
               />
@@ -129,7 +132,7 @@ export default function AddedProducts() {
         className={`relative flex gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px] ${onboardingStep === 2 ? "z-40" : ""}`}
       >
         <h2 className="text-[20px] text-[#687063] font-bold flex justify-between">
-          В холодильнике
+          {t("addedProducts.title")}
           <span className="bg-[#EDF2E7] rounded-full py-2 px-4 text-sm">
             {addedProducts.length > 0 ? addedProducts.length : 0}
           </span>
@@ -155,12 +158,12 @@ export default function AddedProducts() {
       {addedProducts.length === 1 && onboardingStep === 2 && (
         <div className="fixed z-10 inset-0 bg-black bg-opacity-50 flex items-start justify-center">
           <div className="relative md:left-[5%] top-[15%] w-[calc(100%-30px)] md:w-[360px] flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
-            <p className="font-bold">
-              Вы добавили свой первый продукт! <span>🎉</span>
-            </p>
+            <p className="font-bold">{t("addedProducts.onboarding.title")}</p>
             <p className="flex flex-col leading-none gap-1">
-              Далее они будут появляться в виджете
-              <span className="font-bold">"В холодильнике"</span>
+              {t("addedProducts.onboarding.description")}{" "}
+              <span className="font-bold">
+                {t("addedProducts.onboarding.widgetName")}
+              </span>
             </p>
             <div className="flex justify-end gap-3 mt-4">
               <button

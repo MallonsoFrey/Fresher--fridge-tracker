@@ -2,12 +2,15 @@ import { useAddedProducts } from "@/store/store";
 import { type ExpirationStatus, type ProductItem } from "@/data/products";
 import getProductWord from "@/utils/getProductWord";
 import getDayWord from "@/utils/getDayWord";
+import { useTranslation } from "react-i18next";
 
 export default function ExpDateStats() {
   const addedProducts = useAddedProducts((state) => state.addedProducts);
   const currentDate = new Date().getTime();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
 
-  if (addedProducts.length == 0) return;
+  if (!addedProducts.length) return null;
 
   const expDates = addedProducts.reduce(
     (acc: Record<ExpirationStatus, ProductItem[]>, p) => {
@@ -15,12 +18,16 @@ export default function ExpDateStats() {
       const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);
       const difInDays = Math.floor(timeDif);
 
-      if (difInDays < 0) {
+      const isExpired = difInDays != null && difInDays < 0;
+      const isSoon = difInDays != null && difInDays >= 0 && difInDays <= 3;
+      //const isFresh = difInDays != null && difInDays > 3;
+
+      if (isExpired) {
         if (!acc["expired"]) {
           acc["expired"] = [];
         }
         acc["expired"].push(p);
-      } else if (difInDays <= 3) {
+      } else if (isSoon) {
         if (!acc["soon"]) {
           acc["soon"] = [];
         }
@@ -35,8 +42,7 @@ export default function ExpDateStats() {
     },
     {} as Record<ExpirationStatus, ProductItem[]>,
   );
-  const theLastAdded: ProductItem =
-    expDates["fresh"]?.[expDates["fresh"].length - 1];
+  const theLastAdded = expDates.fresh?.at(-1);
 
   const soonToExpire: ProductItem | null = expDates["soon"]
     ? expDates["soon"].length > 1
@@ -63,7 +69,7 @@ md:overflow-hidden h-auto gap-3"
               🥬
             </div>
             <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
-              Свежее
+              {t("expDateStats.fresh")}
             </span>
           </div>
           <div>
@@ -71,12 +77,14 @@ md:overflow-hidden h-auto gap-3"
               {expDates["fresh"].length}
             </span>
             <span className="text-[20px] font-bold md:text-[10px]">
-              {getProductWord(expDates["fresh"].length)}
+              {getProductWord(expDates["fresh"].length, currentLanguage)}
             </span>
           </div>
-          <div className="flex flex-col text-[14px] md:text-[10px] text-[#687063]">
-            Последнее добавление:
-            <span className="font-bold">{theLastAdded.name}</span>
+          <div className="flex flex-col text-[14px] md:text-[12px] text-[#687063]">
+            {t("expDateStats.lastAdded")}
+            <span className="font-bold">
+              {theLastAdded?.name[currentLanguage]}
+            </span>
           </div>
         </div>
       )}
@@ -87,27 +95,31 @@ md:overflow-hidden h-auto gap-3"
               ⏳
             </div>
             <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
-              Скоро
+              {t("expDateStats.soon")}
             </span>
           </div>
           <div>
             <span className="text-[28px] md:text-lg font-bold mr-2">
               {expDates["soon"].length}
             </span>
-            <span className="text-[20px] font-bold md:text-[10px]">
-              {getProductWord(expDates["soon"].length)}
+            <span className="text-[20px] font-bold md:text-[14px]">
+              {getProductWord(expDates["soon"].length, currentLanguage)}
             </span>
           </div>
-          <div className="flex text-[14px] flex-col md:text-[10px] text-[#687063]">
-            Ближайший:
-            <span className="font-bold flex-col flex-wrap flex justify-between md:items-end">
-              {soonToExpire?.name}
+          <div className="flex text-[14px] flex-col md:text-[12px] text-[#687063]">
+            {t("expDateStats.nearest")}
+            <span className="font-bold flex-col flex-wrap flex justify-between">
+              {soonToExpire?.name[currentLanguage]}
               {difInDays == 0 ? (
-                <span className="font-bold">Испортится сегодня</span>
+                <span className="font-bold">
+                  {" "}
+                  {t("expDateStats.spilsToday")}
+                </span>
               ) : (
                 <span className="font-normal">
-                  Через <span className="font-bold">{difInDays}</span>
-                  {getDayWord(difInDays)}
+                  {t("expDateStats.inDays")}
+                  <span className="font-bold">{difInDays}</span>
+                  {getDayWord(difInDays, currentLanguage)}
                 </span>
               )}
             </span>
@@ -121,19 +133,19 @@ md:overflow-hidden h-auto gap-3"
               ❌
             </div>
             <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
-              Испортилось
+              {t("expDateStats.expired")}
             </span>
           </div>
           <div>
             <span className="text-[28px] md:text-lg font-bold mr-2">
               {expDates["expired"].length}
             </span>
-            <span className="text-[20px] font-bold md:text-[10px]">
-              {getProductWord(expDates["expired"].length)}
+            <span className="text-[20px] font-bold md:text-[14px]">
+              {getProductWord(expDates["expired"].length, currentLanguage)}
             </span>
           </div>
-          <div className="text-[14px] flex font-bold md:text-[10px] text-[#687063]">
-            Не забудьте проверить холодильник
+          <div className="text-[14px] flex font-bold md:text-[12px] text-[#687063]">
+            {t("expDateStats.checkFridge")}
           </div>
         </div>
       )}

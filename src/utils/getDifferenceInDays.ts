@@ -1,13 +1,15 @@
 import { format } from "date-fns";
-import { ru } from "date-fns/locale";
+import { ru, enGB } from "date-fns/locale";
 
-export default function getDifferenceInDays(date: Date) {
+export default function getDifferenceInDays(date: Date, language: "ru" | "en") {
   const currentDate = new Date().getTime();
   const expDate = date.getTime();
   const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);
   const difInDays = Math.ceil(timeDif);
-  const parsedDate = format(new Date(expDate), "d MMMM", {
-    locale: ru,
+
+  const locale = language === "ru" ? ru : enGB;
+  const parsedDate = format(date, "d MMMM", {
+    locale,
   });
 
   return {

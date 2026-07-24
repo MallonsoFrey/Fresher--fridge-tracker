@@ -1,18 +1,25 @@
-export default function getDayWord(count: number): string {
-  const lastTwoDigits = count % 100;
-  const lastDigit = count % 10;
-
-  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-    return 'дней';
+export default function getDayWord(
+  count: number,
+  language: "ru" | "en",
+): string {
+  if (language === "en") {
+    return count === 1 ? "day" : "days";
   }
 
-  if (lastDigit === 1) {
-    return 'день';
+  const lastTwo = count % 100;
+  const last = count % 10;
+
+  if (lastTwo >= 11 && lastTwo <= 14) {
+    return "дней";
   }
 
-  if (lastDigit >= 2 && lastDigit <= 4) {
-    return 'дня';
+  if (last === 1) {
+    return "день";
   }
 
-  return 'дней';
+  if (last >= 2 && last <= 4) {
+    return "дня";
+  }
+
+  return "дней";
 }

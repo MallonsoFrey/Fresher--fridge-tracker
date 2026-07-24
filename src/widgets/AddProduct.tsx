@@ -2,11 +2,12 @@ import { useMemo, useState, useRef, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format, isValid, parse } from "date-fns";
-import { ru } from "date-fns/locale";
+import { enGB, ru } from "date-fns/locale";
 import { maskDateInput } from "@/utils/maskDateInput";
 import { productItems, type ProductItem } from "@/data/products";
 import { useAddedProducts } from "@/store/store";
 import { useOnboardingStore } from "@/store/store";
+import { useTranslation } from "react-i18next";
 
 export default function AddProduct({
   searchFirstProduct,
@@ -33,6 +34,10 @@ export default function AddProduct({
   const addedProducts = useAddedProducts((state) => state.addedProducts);
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
   const setNextStep = useOnboardingStore((state) => state.nextStep);
+
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
+  const locale = i18n.language === "ru" ? ru : enGB;
 
   const scrollDown = () => {
     window.scrollTo({
@@ -61,11 +66,15 @@ export default function AddProduct({
 
   const productSuggestions: ProductItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
+
     if (!q) return [];
+
     return productItems
-      .filter((p) => p.name.toLowerCase().includes(q))
+      .filter((product) =>
+        product?.name?.[currentLanguage].toLowerCase().includes(q),
+      )
       .slice(0, 8);
-  }, [productName]);
+  }, [productName, currentLanguage]);
 
   const handleDayPickerSelect = (date: Date | undefined) => {
     if (!date) {
@@ -141,10 +150,10 @@ export default function AddProduct({
       >
         <div className="mb-5">
           <h2 className="text-2xl text-[#687063] font-bold">
-            Добавить продукт
+            {t("addProduct.title")}
           </h2>
 
-          <p className="text-xs text-[#687063]">Сохраняйте продукты свежими.</p>
+          <p className="text-xs text-[#687063]">{t("addProduct.subtitle")}</p>
         </div>
 
         <div className="relative flex flex-col gap-2 mb-5">
@@ -152,12 +161,12 @@ export default function AddProduct({
             htmlFor="product-name"
             className="text-sm text-[#687063] font-bold"
           >
-            Название
+            {t("addProduct.productName")}
           </label>
           <input
             ref={firstSeach}
             type="text"
-            placeholder="Начните вводить название"
+            placeholder={t("addProduct.searchBar")}
             className="w-full h-12 px-4 text-sm text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
             value={productName}
             onChange={(e) => {
@@ -178,13 +187,13 @@ export default function AddProduct({
                   className="w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2"
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => {
-                    setProductName(p.name);
+                    setProductName(p.name[currentLanguage]);
                     setSelectedProduct(p);
                     setIsSuggestionsOpen(false);
                   }}
                 >
                   <span>{p.emoji}</span>
-                  <span>{p.name}</span>
+                  <span>{p.name[currentLanguage]}</span>
                 </button>
               ))}
             </div>
@@ -196,14 +205,14 @@ export default function AddProduct({
             htmlFor="expiry-date"
             className="text-sm text-[#687063] font-bold"
           >
-            Срок годности
+            {t("addProduct.productExpDate")}
           </label>
           <input
             className="w-full h-12 px-4 text-sm text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
             id="date-input"
             type="text"
             value={dateValue}
-            placeholder="дд/мм/гггг"
+            placeholder={currentLanguage === "ru" ? "дд/мм/гггг" : "dd/mm/yyyy"}
             onChange={handleInputChange}
           />
           <span
@@ -213,7 +222,7 @@ export default function AddProduct({
               toggleCalender();
             }}
             aria-expanded={isCalendarOpen}
-            aria-label="Откройте календарь и выберите дату"
+            aria-label={t("addProduct.calendarAriaLabel")}
             className="cursor-pointer absolute w-5 h-5 right-4 bottom-3.5"
           >
             <svg
@@ -240,7 +249,7 @@ export default function AddProduct({
           {isCalendarOpen && (
             <div className="absolute z-50 md:mt-2 w-max rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg p-2 top-full left-0">
               <DayPicker
-                locale={ru}
+                locale={locale}
                 weekStartsOn={1}
                 mode="single"
                 month={month}
@@ -257,9 +266,7 @@ export default function AddProduct({
 
         <div className="h-[10px] text-[8px] w-full mt-2.5 mb-3">
           {error && (
-            <p className="text-xs text-[#e43b2e]">
-              Выберите продукт и срок годности.
-            </p>
+            <p className="text-xs text-[#e43b2e]">{t("addProduct.error")}</p>
           )}
         </div>
         <button
@@ -282,7 +289,7 @@ export default function AddProduct({
           }}
           className="flex justify-center items-center w-full h-6 transition-transform duration-100 ease-in-out active:translate-y-[3px] active:shadow-md active:bg-[#4c6046] hover:shadow-md bg-[#6F8D67] hover:bg-[#4c6046] text-white text-sm py-4 px-5 rounded-[22px]"
         >
-          Сохранить
+          {t("buttons.save")}
         </button>
       </div>
       <button
@@ -330,7 +337,7 @@ export default function AddProduct({
         <div className="fixed z-20 inset-0 bg-black bg-opacity-50 flex items-start md:items-center justify-center">
           <div className="relative md:left-[30%] md:top-[20%] top-[30%] w-[calc(100%-30px)] md:w-fit flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
             <p className="font-bold">
-              Вот здесь вы можете вводить продукт, который хотите добавить
+              {t("addProduct.onboarding.description")}
             </p>
             <div className="flex justify-end gap-3 mt-4">
               <button

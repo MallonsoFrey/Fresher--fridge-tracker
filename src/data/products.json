@@ -1,0 +1,1495 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "p001",
+      "emoji": "🥛",
+      "name": {
+        "en": "Milk",
+        "ru": "Молоко"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p002",
+      "emoji": "🥛",
+      "name": {
+        "en": "Kefir",
+        "ru": "Кефир"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p003",
+      "emoji": "🥛",
+      "name": {
+        "en": "Ryazhenka (fermented baked milk)",
+        "ru": "Ряженка"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p004",
+      "emoji": "🥛",
+      "name": {
+        "en": "Drinkable yogurt",
+        "ru": "Йогурт питьевой"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p005",
+      "emoji": "🥣",
+      "name": {
+        "en": "Thick yogurt (Greek)",
+        "ru": "Йогурт густой (греческий)"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p006",
+      "emoji": "🧈",
+      "name": {
+        "en": "Butter",
+        "ru": "Сливочное масло"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p007",
+      "emoji": "🧈",
+      "name": {
+        "en": "Clarified butter (ghee)",
+        "ru": "Топлёное масло (гхи)"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p008",
+      "emoji": "🧀",
+      "name": {
+        "en": "Hard cheese",
+        "ru": "Твёрдый сыр"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p009",
+      "emoji": "🧀",
+      "name": {
+        "en": "Semi-hard cheese",
+        "ru": "Полутвёрдый сыр"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p010",
+      "emoji": "🧀",
+      "name": {
+        "en": "Mozzarella",
+        "ru": "Моцарелла"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p011",
+      "emoji": "🧀",
+      "name": {
+        "en": "Suluguni",
+        "ru": "Сулугуни"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p012",
+      "emoji": "🧀",
+      "name": {
+        "en": "Feta/brined cheese",
+        "ru": "Фета/брынза"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p013",
+      "emoji": "🧀",
+      "name": {
+        "en": "Soft spreadable cheese",
+        "ru": "Творожный сыр"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p014",
+      "emoji": "🧀",
+      "name": {
+        "en": "Processed cheese",
+        "ru": "Плавленый сыр"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p015",
+      "emoji": "🥚",
+      "name": {
+        "en": "Chicken eggs",
+        "ru": "Яйца куриные"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p016",
+      "emoji": "🥚",
+      "name": {
+        "en": "Quail eggs",
+        "ru": "Перепелиные яйца"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p017",
+      "emoji": "🧀",
+      "name": {
+        "en": "Cottage cheese",
+        "ru": "Творог"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p018",
+      "emoji": "🥛",
+      "name": {
+        "en": "Sour cream",
+        "ru": "Сметана"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p019",
+      "emoji": "🥛",
+      "name": {
+        "en": "Heavy cream",
+        "ru": "Сливки"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p020",
+      "emoji": "🍦",
+      "name": {
+        "en": "Ice cream",
+        "ru": "Мороженое"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p021",
+      "emoji": "🥩",
+      "name": {
+        "en": "Beef (steak/lean cut)",
+        "ru": "Говядина (стейк/мякоть)"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p022",
+      "emoji": "🥩",
+      "name": {
+        "en": "Pork (lean cut)",
+        "ru": "Свинина (мякоть)"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p023",
+      "emoji": "🥩",
+      "name": {
+        "en": "Ground meat",
+        "ru": "Фарш мясной"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p024",
+      "emoji": "🍖",
+      "name": {
+        "en": "Ribs",
+        "ru": "Рёбра"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p025",
+      "emoji": "🍖",
+      "name": {
+        "en": "Bacon",
+        "ru": "Бекон"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p026",
+      "emoji": "🍗",
+      "name": {
+        "en": "Chicken breast",
+        "ru": "Куриная грудка"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p027",
+      "emoji": "🍗",
+      "name": {
+        "en": "Chicken thighs",
+        "ru": "Куриные бёдра"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p028",
+      "emoji": "🍗",
+      "name": {
+        "en": "Chicken wings",
+        "ru": "Куриные крылья"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p029",
+      "emoji": "🦃",
+      "name": {
+        "en": "Turkey (fillet)",
+        "ru": "Индейка (филе)"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p030",
+      "emoji": "🥩",
+      "name": {
+        "en": "Veal",
+        "ru": "Телятина"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p031",
+      "emoji": "🥓",
+      "name": {
+        "en": "Ham",
+        "ru": "Ветчина"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p032",
+      "emoji": "🌭",
+      "name": {
+        "en": "Sausages",
+        "ru": "Сосиски"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p033",
+      "emoji": "🌭",
+      "name": {
+        "en": "Frankfurters",
+        "ru": "Сардельки"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p034",
+      "emoji": "🥓",
+      "name": {
+        "en": "Boiled sausage",
+        "ru": "Колбаса варёная"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p035",
+      "emoji": "🥓",
+      "name": {
+        "en": "Smoked sausage",
+        "ru": "Колбаса копчёная"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p036",
+      "emoji": "🥩",
+      "name": {
+        "en": "Pâté",
+        "ru": "Паштет"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p037",
+      "emoji": "🍖",
+      "name": {
+        "en": "Smoked chicken",
+        "ru": "Копчёная курица"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p038",
+      "emoji": "🥩",
+      "name": {
+        "en": "Meat for broth",
+        "ru": "Мясо для бульона"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p039",
+      "emoji": "🥟",
+      "name": {
+        "en": "Pelmeni (frozen)",
+        "ru": "Пельмени (замороженные)"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p040",
+      "emoji": "🥟",
+      "name": {
+        "en": "Vareniki (frozen)",
+        "ru": "Вареники (замороженные)"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p041",
+      "emoji": "🐟",
+      "name": {
+        "en": "Salmon (fillet)",
+        "ru": "Лосось/семга (филе)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p042",
+      "emoji": "🐟",
+      "name": {
+        "en": "Trout (fillet)",
+        "ru": "Форель (филе)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p043",
+      "emoji": "🐟",
+      "name": {
+        "en": "Cod (fillet)",
+        "ru": "Треска (филе)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p044",
+      "emoji": "🐟",
+      "name": {
+        "en": "Hake/pollock (fillet)",
+        "ru": "Хек/минтай (филе)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p045",
+      "emoji": "🐟",
+      "name": {
+        "en": "Herring",
+        "ru": "Сельдь"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p046",
+      "emoji": "🐟",
+      "name": {
+        "en": "Mackerel",
+        "ru": "Скумбрия"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p047",
+      "emoji": "🐟",
+      "name": {
+        "en": "Tuna (steak/fillet)",
+        "ru": "Тунец (стейк/филе)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p048",
+      "emoji": "🐟",
+      "name": {
+        "en": "Fish patties (frozen)",
+        "ru": "Рыбные котлеты (замороженные)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p049",
+      "emoji": "🍤",
+      "name": {
+        "en": "Shrimp",
+        "ru": "Креветки"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p050",
+      "emoji": "🦑",
+      "name": {
+        "en": "Squid",
+        "ru": "Кальмар"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["freezer", "fridge"]
+    },
+    {
+      "id": "p051",
+      "emoji": "🦪",
+      "name": {
+        "en": "Mussels",
+        "ru": "Мидии"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["freezer", "fridge"]
+    },
+    {
+      "id": "p052",
+      "emoji": "🐙",
+      "name": {
+        "en": "Octopus (frozen)",
+        "ru": "Осьминог (замороженный)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p053",
+      "emoji": "🐟",
+      "name": {
+        "en": "Caviar (red/black)",
+        "ru": "Икра (красная/чёрная)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p054",
+      "emoji": "🥫",
+      "name": {
+        "en": "Canned fish (tuna/sardines)",
+        "ru": "Рыба в банке (тунец/сардины)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p055",
+      "emoji": "🍣",
+      "name": {
+        "en": "Sushi/rolls (ready-made)",
+        "ru": "Суши/роллы (готовые)"
+      },
+      "category": "fish_and_seafood",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p056",
+      "emoji": "🥒",
+      "name": {
+        "en": "Cucumbers",
+        "ru": "Огурцы"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p057",
+      "emoji": "🍅",
+      "name": {
+        "en": "Tomatoes",
+        "ru": "Помидоры"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p058",
+      "emoji": "🫑",
+      "name": {
+        "en": "Bell pepper",
+        "ru": "Болгарский перец"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p059",
+      "emoji": "🥬",
+      "name": {
+        "en": "Lettuce",
+        "ru": "Салат-латук"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p060",
+      "emoji": "🥬",
+      "name": {
+        "en": "Spinach",
+        "ru": "Шпинат"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p061",
+      "emoji": "🥬",
+      "name": {
+        "en": "Arugula",
+        "ru": "Руккола"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p062",
+      "emoji": "🥦",
+      "name": {
+        "en": "Broccoli",
+        "ru": "Брокколи"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p063",
+      "emoji": "🥬",
+      "name": {
+        "en": "Cauliflower",
+        "ru": "Цветная капуста"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p064",
+      "emoji": "🥕",
+      "name": {
+        "en": "Carrots",
+        "ru": "Морковь"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p065",
+      "emoji": "🥒",
+      "name": {
+        "en": "Zucchini",
+        "ru": "Кабачок"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p066",
+      "emoji": "🍆",
+      "name": {
+        "en": "Eggplant",
+        "ru": "Баклажан"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p067",
+      "emoji": "🥗",
+      "name": {
+        "en": "Celery (stalks)",
+        "ru": "Сельдерей (стебли)"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p068",
+      "emoji": "🧅",
+      "name": {
+        "en": "Green onions",
+        "ru": "Зелёный лук"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p069",
+      "emoji": "🥬",
+      "name": {
+        "en": "Napa cabbage",
+        "ru": "Пекинская капуста"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p070",
+      "emoji": "🥬",
+      "name": {
+        "en": "White cabbage",
+        "ru": "Капуста белокочанная"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p071",
+      "emoji": "🌽",
+      "name": {
+        "en": "Corn (cobs/kernels)",
+        "ru": "Кукуруза (початки/зерно)"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p072",
+      "emoji": "🧊",
+      "name": {
+        "en": "Mixed vegetables (frozen)",
+        "ru": "Овощная смесь (замороженная)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p073",
+      "emoji": "🧊",
+      "name": {
+        "en": "Broccoli (frozen)",
+        "ru": "Брокколи (замороженная)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p074",
+      "emoji": "🧊",
+      "name": {
+        "en": "Cauliflower (frozen)",
+        "ru": "Цветная капуста (замороженная)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p075",
+      "emoji": "🧊",
+      "name": {
+        "en": "Green peas (frozen)",
+        "ru": "Зелёный горошек (замороженный)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p076",
+      "emoji": "🧊",
+      "name": {
+        "en": "Green beans (frozen)",
+        "ru": "Стручковая фасоль (замороженная)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p077",
+      "emoji": "🧊",
+      "name": {
+        "en": "Corn (frozen)",
+        "ru": "Кукуруза (замороженная)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p078",
+      "emoji": "🧊",
+      "name": {
+        "en": "Spinach (frozen)",
+        "ru": "Шпинат (замороженный)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p079",
+      "emoji": "🧊",
+      "name": {
+        "en": "Mushrooms (frozen)",
+        "ru": "Грибы (замороженные)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p080",
+      "emoji": "🧊",
+      "name": {
+        "en": "Dumplings/dough (frozen)",
+        "ru": "Пельмени/тесто (заморозка)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p081",
+      "emoji": "🧊",
+      "name": {
+        "en": "Ice cubes",
+        "ru": "Лёд (кубики)"
+      },
+      "category": "frozen_vegetables",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p082",
+      "emoji": "🍎",
+      "name": {
+        "en": "Apples",
+        "ru": "Яблоки"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p083",
+      "emoji": "🍐",
+      "name": {
+        "en": "Pears",
+        "ru": "Груши"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p084",
+      "emoji": "🍊",
+      "name": {
+        "en": "Oranges",
+        "ru": "Апельсины"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p085",
+      "emoji": "🍋",
+      "name": {
+        "en": "Lemons",
+        "ru": "Лимоны"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p086",
+      "emoji": "🍌",
+      "name": {
+        "en": "Bananas",
+        "ru": "Бананы"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p087",
+      "emoji": "🍇",
+      "name": {
+        "en": "Grapes",
+        "ru": "Виноград"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p088",
+      "emoji": "🍓",
+      "name": {
+        "en": "Strawberries",
+        "ru": "Клубника"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p089",
+      "emoji": "🫐",
+      "name": {
+        "en": "Blueberries",
+        "ru": "Черника/голубика"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p090",
+      "emoji": "🍒",
+      "name": {
+        "en": "Cherries",
+        "ru": "Черешня/вишня"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p091",
+      "emoji": "🍑",
+      "name": {
+        "en": "Peaches/nectarines",
+        "ru": "Персики/нектарины"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p092",
+      "emoji": "🍍",
+      "name": {
+        "en": "Pineapple",
+        "ru": "Ананас"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p093",
+      "emoji": "🥭",
+      "name": {
+        "en": "Mango",
+        "ru": "Манго"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p094",
+      "emoji": "🥝",
+      "name": {
+        "en": "Kiwi",
+        "ru": "Киви"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p095",
+      "emoji": "🍉",
+      "name": {
+        "en": "Watermelon (sliced)",
+        "ru": "Арбуз (нарезанный)"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p096",
+      "emoji": "🍈",
+      "name": {
+        "en": "Melon (sliced)",
+        "ru": "Дыня (нарезанная)"
+      },
+      "category": "fruits_and_berries",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p097",
+      "emoji": "🧊",
+      "name": {
+        "en": "Mixed berries (frozen)",
+        "ru": "Ягодная смесь (замороженная)"
+      },
+      "category": "frozen_fruits_and_berries",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p098",
+      "emoji": "🧊",
+      "name": {
+        "en": "Strawberries (frozen)",
+        "ru": "Клубника (замороженная)"
+      },
+      "category": "frozen_fruits_and_berries",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p099",
+      "emoji": "🧊",
+      "name": {
+        "en": "Blueberries (frozen)",
+        "ru": "Черника (замороженная)"
+      },
+      "category": "frozen_fruits_and_berries",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p100",
+      "emoji": "🧊",
+      "name": {
+        "en": "Cherries (frozen)",
+        "ru": "Вишня (замороженная)"
+      },
+      "category": "frozen_fruits_and_berries",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p101",
+      "emoji": "🧊",
+      "name": {
+        "en": "Raspberries (frozen)",
+        "ru": "Малина (замороженная)"
+      },
+      "category": "frozen_fruits_and_berries",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p102",
+      "emoji": "🍲",
+      "name": {
+        "en": "Soup (ready-made)",
+        "ru": "Суп (готовый)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p103",
+      "emoji": "🍛",
+      "name": {
+        "en": "Stew/braised vegetables",
+        "ru": "Рагу/тушёные овощи"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p104",
+      "emoji": "🍝",
+      "name": {
+        "en": "Pasta (cooked)",
+        "ru": "Паста/макароны (готовые)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p105",
+      "emoji": "🍚",
+      "name": {
+        "en": "Rice (cooked)",
+        "ru": "Рис (готовый)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p106",
+      "emoji": "🍗",
+      "name": {
+        "en": "Roasted chicken (ready-made)",
+        "ru": "Курица запечённая (готовая)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p107",
+      "emoji": "🍕",
+      "name": {
+        "en": "Pizza (chilled/frozen)",
+        "ru": "Пицца (охлаждённая/замороженная)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p108",
+      "emoji": "🥪",
+      "name": {
+        "en": "Sandwich/sandwiches",
+        "ru": "Сэндвич/бутерброды"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p109",
+      "emoji": "🥟",
+      "name": {
+        "en": "Khinkali (frozen)",
+        "ru": "Хинкали (замороженные)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p110",
+      "emoji": "🥟",
+      "name": {
+        "en": "Manti (frozen)",
+        "ru": "Манты (замороженные)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p111",
+      "emoji": "🧊",
+      "name": {
+        "en": "Broth (frozen)",
+        "ru": "Бульон (замороженный)"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p112",
+      "emoji": "🧂",
+      "name": {
+        "en": "Mayonnaise",
+        "ru": "Майонез"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p113",
+      "emoji": "🧂",
+      "name": {
+        "en": "Ketchup",
+        "ru": "Кетчуп"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p114",
+      "emoji": "🧂",
+      "name": {
+        "en": "Mustard",
+        "ru": "Горчица"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p115",
+      "emoji": "🧂",
+      "name": {
+        "en": "Soy sauce",
+        "ru": "Соевый соус"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p116",
+      "emoji": "🧂",
+      "name": {
+        "en": "Hot sauce (chili)",
+        "ru": "Острый соус (чили)"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p117",
+      "emoji": "🧄",
+      "name": {
+        "en": "Garlic sauce",
+        "ru": "Соус чесночный"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p118",
+      "emoji": "🥫",
+      "name": {
+        "en": "Tomato paste",
+        "ru": "Томатная паста"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p119",
+      "emoji": "🧈",
+      "name": {
+        "en": "Hummus",
+        "ru": "Хумус"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p120",
+      "emoji": "🥑",
+      "name": {
+        "en": "Guacamole",
+        "ru": "Гуакамоле"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p121",
+      "emoji": "🧂",
+      "name": {
+        "en": "Salad dressing",
+        "ru": "Салатная заправка"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p122",
+      "emoji": "🫙",
+      "name": {
+        "en": "Pickled cucumbers",
+        "ru": "Огурцы маринованные"
+      },
+      "category": "opened_canned_food",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p123",
+      "emoji": "🫙",
+      "name": {
+        "en": "Pickled tomatoes",
+        "ru": "Помидоры маринованные"
+      },
+      "category": "opened_canned_food",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p124",
+      "emoji": "🫙",
+      "name": {
+        "en": "Olives",
+        "ru": "Оливки/маслины"
+      },
+      "category": "opened_canned_food",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p125",
+      "emoji": "🫙",
+      "name": {
+        "en": "Capers",
+        "ru": "Каперсы"
+      },
+      "category": "opened_canned_food",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p126",
+      "emoji": "🫙",
+      "name": {
+        "en": "Jam/preserves (opened)",
+        "ru": "Джем/варенье (открытое)"
+      },
+      "category": "opened_canned_food",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p127",
+      "emoji": "🧃",
+      "name": {
+        "en": "Juice",
+        "ru": "Сок"
+      },
+      "category": "beverages",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p128",
+      "emoji": "🧃",
+      "name": {
+        "en": "Fruit drink/compote",
+        "ru": "Морс/компот"
+      },
+      "category": "beverages",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p129",
+      "emoji": "🥤",
+      "name": {
+        "en": "Soft drink",
+        "ru": "Газировка"
+      },
+      "category": "beverages",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p130",
+      "emoji": "💧",
+      "name": {
+        "en": "Water (bottle)",
+        "ru": "Вода (бутылка)"
+      },
+      "category": "beverages",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p131",
+      "emoji": "🍺",
+      "name": {
+        "en": "Beer",
+        "ru": "Пиво"
+      },
+      "category": "beverages",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p132",
+      "emoji": "🍫",
+      "name": {
+        "en": "Chocolate",
+        "ru": "Шоколад"
+      },
+      "category": "sweets_and_desserts",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p133",
+      "emoji": "🍮",
+      "name": {
+        "en": "Pudding",
+        "ru": "Пудинг"
+      },
+      "category": "sweets_and_desserts",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p134",
+      "emoji": "🍰",
+      "name": {
+        "en": "Cheesecake",
+        "ru": "Чизкейк"
+      },
+      "category": "sweets_and_desserts",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p135",
+      "emoji": "🧁",
+      "name": {
+        "en": "Cream/frosting (homemade)",
+        "ru": "Крем/глазурь (домашние)"
+      },
+      "category": "sweets_and_desserts",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p136",
+      "emoji": "🍨",
+      "name": {
+        "en": "Frozen yogurt/sorbet",
+        "ru": "Замороженный йогурт/сорбет"
+      },
+      "category": "sweets_and_desserts",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p137",
+      "emoji": "🥔",
+      "name": {
+        "en": "Potatoes",
+        "ru": "Картофель"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p138",
+      "emoji": "🫜",
+      "name": {
+        "en": "Beets",
+        "ru": "Свекла"
+      },
+      "category": "fresh_vegetables",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p139",
+      "emoji": "🥗",
+      "name": {
+        "en": "Salad",
+        "ru": "Салат"
+      },
+      "category": "prepared_food_and_ready_meals",
+      "storage": ["freezer"]
+    },
+    {
+      "id": "p140",
+      "emoji": "🥛",
+      "name": {
+        "en": "Custard (pastry cream)",
+        "ru": "Кастард (заварной крем)"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p141",
+      "emoji": "🥛",
+      "name": {
+        "en": "Buttermilk",
+        "ru": "Баттермилк (пахта)"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p142",
+      "emoji": "🧀",
+      "name": {
+        "en": "Cream cheese",
+        "ru": "Крем-чиз"
+      },
+      "category": "dairy_and_eggs",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p143",
+      "emoji": "🥓",
+      "name": {
+        "en": "Bacon strips",
+        "ru": "Бекон полосками"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge", "freezer"]
+    },
+    {
+      "id": "p144",
+      "emoji": "🍗",
+      "name": {
+        "en": "Turkey slices",
+        "ru": "Индейка нарезка"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p145",
+      "emoji": "🌭",
+      "name": {
+        "en": "Hot dog sausages",
+        "ru": "Хот-дог сосиски"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p146",
+      "emoji": "🥩",
+      "name": {
+        "en": "Roast beef slices",
+        "ru": "Ростбиф нарезка"
+      },
+      "category": "meat_poultry_and_deli",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p147",
+      "emoji": "🥜",
+      "name": {
+        "en": "Peanut butter",
+        "ru": "Арахисовая паста"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p148",
+      "emoji": "🥫",
+      "name": {
+        "en": "Salsa",
+        "ru": "Сальса"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    },
+    {
+      "id": "p149",
+      "emoji": "🍁",
+      "name": {
+        "en": "Maple syrup",
+        "ru": "Кленовый сироп"
+      },
+      "category": "sauces_and_dressings",
+      "storage": ["fridge"]
+    }
+  ]
+}
