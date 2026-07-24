@@ -20,7 +20,7 @@ export default function LanguageToggle() {
   };
 
   return (
-    <div className="absolute right-3 top-4 outline-none"><button
+    <div className="absolute md:right-3 md:top-4 right-5 top-[13%] outline-none"><button
       onClick={() => changeLanguage()}
       className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors 
       bg-gray-300"
