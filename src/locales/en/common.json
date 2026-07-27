@@ -17,9 +17,12 @@
     "searchBar": "Start typing a product name",
     "productExpDate": "Expiration date",
     "calendarAriaLabel": "Open the calendar and select a date",
-    "error": "Please select a product and expiration date",
+    "errors": {
+      "product": "Select a product from <strong>the list</strong>",
+      "date": "Enter expiration date"
+    },
     "onboarding": {
-      "description": "Here you can enter the product you want to add. Give it a try!"
+      "description": "Select a product from the list and enter its expiration date here. Give it a try!"
     }
   },
   "addedProducts": {

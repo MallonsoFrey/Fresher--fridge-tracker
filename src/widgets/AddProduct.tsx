@@ -7,7 +7,12 @@ import { maskDateInput } from "@/utils/maskDateInput";
 import { productItems, type ProductItem } from "@/data/products";
 import { useAddedProducts } from "@/store/store";
 import { useOnboardingStore } from "@/store/store";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
+
+type Errors = {
+  product?: string;
+  date?: string;
+};
 
 export default function AddProduct({
   searchFirstProduct,
@@ -28,7 +33,10 @@ export default function AddProduct({
     null,
   );
   const firstSeach = useRef<HTMLInputElement | null>(null);
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const cleanErrors = () => {
+    setErrors({ product: "", date: "" });
+  };
 
   const addProduct = useAddedProducts((state) => state.addProduct);
   const addedProducts = useAddedProducts((state) => state.addedProducts);
@@ -142,6 +150,27 @@ export default function AddProduct({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCalendarOpen]);
+
+  const validateAndSave = () => {
+    if (selectedProduct && selectedDate) {
+      cleanErrors();
+      addProduct({
+        ...selectedProduct,
+        expDate: selectedDate,
+        addedDate: new Date(),
+      });
+      setProductName("");
+      setDateValue("");
+      setSelectedDate(undefined);
+      setMonth(new Date());
+      setSelectedProduct(null);
+    } else {
+      setErrors({
+        product: !selectedProduct ? "addProduct.errors.product" : "",
+        date: !selectedDate ? "addProduct.errors.date" : "",
+      });
+    }
+  };
 
   return (
     <>
@@ -265,27 +294,23 @@ export default function AddProduct({
         </div>
 
         <div className="h-[10px] text-[8px] w-full mt-2.5 mb-3">
-          {error && (
-            <p className="text-xs text-[#e43b2e]">{t("addProduct.error")}</p>
-          )}
+          {errors.product ? (
+            <p className="text-xs text-[#e43b2e]">
+              <Trans
+                i18nKey={errors.product}
+                components={{
+                  strong: <span className="font-bold" />,
+                }}
+              />
+            </p>
+          ) : errors.date ? (
+            <p className="text-xs text-[#e43b2e]">{t(`${errors.date}`)}</p>
+          ) : null}
         </div>
         <button
           onClick={() => {
             if (onboardingStep === 1) setNextStep(2);
-            if (selectedProduct && selectedDate) {
-              setError(false);
-              addProduct({
-                ...selectedProduct,
-                expDate: selectedDate,
-                addedDate: new Date(),
-              });
-              setProductName("");
-              setDateValue("");
-              setSelectedDate(undefined);
-              setMonth(new Date());
-            } else {
-              setError(true);
-            }
+            validateAndSave();
           }}
           className="flex justify-center items-center w-full h-6 transition-transform duration-100 ease-in-out active:translate-y-[3px] active:shadow-md active:bg-[#4c6046] hover:shadow-md bg-[#6F8D67] hover:bg-[#4c6046] text-white text-sm py-4 px-5 rounded-[22px]"
         >
@@ -335,7 +360,7 @@ export default function AddProduct({
       </button>
       {onboardingStep === 1 && (
         <div className="fixed z-20 inset-0 bg-black bg-opacity-50 flex items-start md:items-center justify-center">
-          <div className="relative md:left-[30%] md:top-[20%] top-[30%] w-[calc(100%-30px)] md:w-fit flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
+          <div className="relative md:left-[34vw] md:top-[25vh] top-[20vh] w-[calc(100%-30px)] md:w-[350px] flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
             <p className="font-bold">
               {t("addProduct.onboarding.description")}
             </p>
