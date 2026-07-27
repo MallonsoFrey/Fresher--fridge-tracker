@@ -360,7 +360,7 @@ export default function AddProduct({
       </button>
       {onboardingStep === 1 && (
         <div className="fixed z-20 inset-0 bg-black bg-opacity-50 flex items-start md:items-center justify-center">
-          <div className="relative md:left-[34vw] md:top-[25vh] top-[20vh] w-[calc(100%-30px)] md:w-[350px] flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
+          <div className="relative md:left-[34vw] md:top-[25vh] top-[15vh] w-[calc(100%-30px)] md:w-[350px] flex text-[#687063] gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
             <p className="font-bold">
               {t("addProduct.onboarding.description")}
             </p>
