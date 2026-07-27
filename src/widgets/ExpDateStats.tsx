@@ -3,6 +3,7 @@ import { type ExpirationStatus, type ProductItem } from "@/data/products";
 import getProductWord from "@/utils/getProductWord";
 import getDayWord from "@/utils/getDayWord";
 import { useTranslation } from "react-i18next";
+import getProductStatus from "@/utils/getProductStatus";
 
 export default function ExpDateStats() {
   const addedProducts = useAddedProducts((state) => state.addedProducts);
@@ -14,13 +15,7 @@ export default function ExpDateStats() {
 
   const expDates = addedProducts.reduce(
     (acc: Record<ExpirationStatus, ProductItem[]>, p) => {
-      const expDate = p.expDate.getTime();
-      const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);
-      const difInDays = Math.ceil(timeDif);
-
-      const isExpired = difInDays != null && difInDays < 0;
-      const isSoon = difInDays != null && difInDays >= 0 && difInDays <= 3;
-      //const isFresh = , != null && difInDays > 3;
+      const { isExpired, isSoon } = getProductStatus(p.expDate);
 
       if (isExpired) {
         if (!acc["expired"]) {
@@ -68,7 +63,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#EAF3E3]">
               🥬
             </div>
-            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
               {t("expDateStats.fresh")}
             </span>
           </div>
@@ -94,7 +89,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F7EFD9]">
               ⏳
             </div>
-            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
               {t("expDateStats.soon")}
             </span>
           </div>
@@ -132,7 +127,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F3DDDD]">
               ❌
             </div>
-            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
               {t("expDateStats.expired")}
             </span>
           </div>

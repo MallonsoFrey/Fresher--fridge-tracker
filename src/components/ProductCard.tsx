@@ -3,6 +3,7 @@ import getDayWord from "@/utils/getDayWord";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
 import DeleteIcon from "@/components/DeleteIcon";
+import getProductStatus from "@/utils/getProductStatus";
 
 type ProductCardProps = {
   product: ProductItem;
@@ -21,9 +22,7 @@ export default function ProductCard({
     currentLanguage,
   );
 
-  const isExpired = difInDays != null && difInDays < 0;
-  const isSoon = difInDays != null && difInDays >= 0 && difInDays <= 3;
-  //const isFresh = difInDays != null && difInDays > 3;
+  const { isExpired, isSoon } = getProductStatus(product.expDate);
 
   let statusText: string;
   let statusClass: string;
