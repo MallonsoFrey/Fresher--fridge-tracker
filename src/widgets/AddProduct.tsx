@@ -196,7 +196,7 @@ export default function AddProduct({
             ref={firstSeach}
             type="text"
             placeholder={t("addProduct.searchBar")}
-            className="w-full h-12 px-4 text-sm text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
+            className="w-full h-12 px-4 text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
             value={productName}
             onChange={(e) => {
               setProductName(e.target.value);
@@ -237,7 +237,7 @@ export default function AddProduct({
             {t("addProduct.productExpDate")}
           </label>
           <input
-            className="w-full h-12 px-4 text-sm text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
+            className="w-full h-12 px-4 text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
             id="date-input"
             type="text"
             value={dateValue}
@@ -309,7 +309,9 @@ export default function AddProduct({
         </div>
         <button
           onClick={() => {
-            if (onboardingStep === 1) setNextStep(2);
+            if (onboardingStep === 1) {
+              setNextStep(2);
+            }
             validateAndSave();
           }}
           className="flex justify-center items-center w-full h-6 transition-transform duration-100 ease-in-out active:translate-y-[3px] active:shadow-md active:bg-[#4c6046] hover:shadow-md bg-[#6F8D67] hover:bg-[#4c6046] text-white text-sm py-4 px-5 rounded-[22px]"

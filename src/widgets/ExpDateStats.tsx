@@ -16,7 +16,7 @@ export default function ExpDateStats() {
     (acc: Record<ExpirationStatus, ProductItem[]>, p) => {
       const expDate = p.expDate.getTime();
       const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);
-      const difInDays = Math.floor(timeDif);
+      const difInDays = Math.ceil(timeDif);
 
       const isExpired = difInDays != null && difInDays < 0;
       const isSoon = difInDays != null && difInDays >= 0 && difInDays <= 3;
@@ -55,7 +55,7 @@ export default function ExpDateStats() {
   const timeDif = soonToExpDate
     ? (soonToExpDate - currentDate) / (1000 * 60 * 60 * 24)
     : 0;
-  const difInDays = Math.floor(timeDif);
+  const difInDays = Math.ceil(timeDif);
 
   return (
     <div
