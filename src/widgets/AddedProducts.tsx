@@ -50,7 +50,7 @@ export default function AddedProducts() {
       <div className="w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
         {addedProducts.length > 0 && (
           <>
-            <ul className="md:text-[12px] leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] border-2 text-[#687063] w-full list-none list-inside items-center flex gap-5 justify-center text-center md:text-left">
+            <ul className="md:text-[12px] leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] border-2 text-[#687063] w-full list-none list-inside items-center flex gap-3 justify-center text-center md:text-left">
               <li
                 className={`cursor-pointer p-3 rounded-3xl ${chosenFilter === "all" ? "bg-white font-bold" : "bg-[#F6F4EE]"}`}
                 onClick={() => setChosenFilter("all")}

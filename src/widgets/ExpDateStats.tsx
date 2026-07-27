@@ -20,7 +20,7 @@ export default function ExpDateStats() {
 
       const isExpired = difInDays != null && difInDays < 0;
       const isSoon = difInDays != null && difInDays >= 0 && difInDays <= 3;
-      //const isFresh = difInDays != null && difInDays > 3;
+      //const isFresh = , != null && difInDays > 3;
 
       if (isExpired) {
         if (!acc["expired"]) {
@@ -68,7 +68,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#EAF3E3]">
               🥬
             </div>
-            <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
               {t("expDateStats.fresh")}
             </span>
           </div>
@@ -94,7 +94,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F7EFD9]">
               ⏳
             </div>
-            <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
               {t("expDateStats.soon")}
             </span>
           </div>
@@ -132,7 +132,7 @@ md:overflow-hidden h-auto gap-3"
             <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F3DDDD]">
               ❌
             </div>
-            <span className="inline-block h-fit text-[20px] md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
+            <span className="inline-block h-fit text-[18px] md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
               {t("expDateStats.expired")}
             </span>
           </div>
