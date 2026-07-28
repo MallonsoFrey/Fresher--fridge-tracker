@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 html {
+  font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 

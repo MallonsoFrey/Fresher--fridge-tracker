@@ -42,8 +42,6 @@ export default function AddProduct({
   const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
   const locale = i18n.language === "ru" ? ru : enGB;
 
-  console.log(onboardingStep);
-
   const scrollDown = () => {
     window.scrollTo({
       top: document.body.scrollHeight,
@@ -70,7 +68,6 @@ export default function AddProduct({
   }, [searchFirstProduct]);
 
   const validateAndSave = () => {
-    console.log(selectedDate, selectedProduct);
     if (selectedProduct && selectedDate) {
       cleanErrors();
       addProduct({
