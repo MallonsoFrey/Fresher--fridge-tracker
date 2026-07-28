@@ -1,5 +1,6 @@
 import { useOnboardingStore } from "@/store/store";
 import { useTranslation, Trans } from "react-i18next";
+import FresherLogo from "./../assets/fresher.svg";
 
 export default function EmptyFridge({
   setSearchFirstProduct,
@@ -32,7 +33,7 @@ export default function EmptyFridge({
           <Trans
             i18nKey="emptyFridge.description"
             components={{
-              strong: <span className="font-bold" />,
+              img: <img className="w-20 inline-block align-baseline" src={FresherLogo} alt="brand logo"/>,
             }}
           />
         </p>
