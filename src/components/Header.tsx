@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <>
       <header className="relative text-[#8E9388] text-lg md:text-[28px] md:max-w-[264px] font-bold uppercase flex md:flex-row-reverse justify-between md:h-fit md:gap-5 md:justify-normal items-center md:mb-4">
-        <img className="w-20 md:w-[140px]" src={FresherLogo} alt="brand logo" />
+        <img className="w-[6.5rem] md:w-[140px]" src={FresherLogo} alt="brand logo" />
         <span className="flex bg-[#EEF2E9] select-none w-fit rounded-[100px] p-4">
           🥬
         </span>
