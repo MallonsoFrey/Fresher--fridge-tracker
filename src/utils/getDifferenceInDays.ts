@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { ru, enGB } from "date-fns/locale";
 
-export default function getDifferenceInDays(date: Date, language: "ru" | "en") {
+export default function getDifferenceInDays(date: Date, language: "ru" | "en" = "ru") {
   const currentDate = new Date().getTime();
   const expDate = date.getTime();
   const timeDif = (expDate - currentDate) / (1000 * 60 * 60 * 24);

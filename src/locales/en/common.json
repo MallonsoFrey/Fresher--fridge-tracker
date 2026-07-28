@@ -32,7 +32,7 @@
       "all": "All",
       "fresh": "Fresh",
       "soon": "Expiring soon",
-      "spoilt": "Expired"
+      "expired": "Expired"
     },
     "onboarding": {
       "title": "You've added your first product! 🎉",

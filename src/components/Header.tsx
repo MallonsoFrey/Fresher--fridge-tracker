@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { ru, enGB } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
+import FresherLogo from "./../assets/fresher.svg";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -13,7 +14,8 @@ export default function Header() {
   return (
     <>
       <header className="relative text-[#8E9388] text-lg md:text-[28px] md:max-w-[264px] font-bold uppercase flex md:flex-row-reverse justify-between md:h-fit md:gap-5 md:justify-normal items-center md:mb-4">
-        Fresher
+        {/* Fresher */}
+        <img className="w-20 md:w-24" src={FresherLogo} alt="brand logo" />
         <span className="flex bg-[#EEF2E9] select-none w-fit rounded-[100px] p-4">
           🥬
         </span>

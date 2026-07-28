@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AddProduct from "@widgets/AddProduct";
+import AddProduct from "@/widgets/AddProduct/AddProduct";
 import EmptyFridge from "@widgets/EmptyFridge";
-import AddedProducts from "@/widgets/AddedProducts";
+import AddedProducts from "@/widgets/AddedProducts/AddedProducts";
 import { useAddedProducts } from "@/store/store";
-import ExpDateStats from "@/widgets/ExpDateStats";
+import ExpDateStats from "@/widgets/ExpDateStats/ExpDateStats";
 
 export default function Home() {
   const addedProducts = useAddedProducts((state) => state.addedProducts);

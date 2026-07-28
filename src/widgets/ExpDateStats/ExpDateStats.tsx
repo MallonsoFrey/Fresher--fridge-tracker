@@ -107,7 +107,6 @@ md:overflow-hidden h-auto gap-3"
               {soonToExpire?.name[currentLanguage]}
               {difInDays == 0 ? (
                 <span className="font-bold">
-                  {" "}
                   {t("expDateStats.spilsToday")}
                 </span>
               ) : (

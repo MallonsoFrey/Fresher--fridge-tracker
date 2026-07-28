@@ -44,3 +44,5 @@ export const useOnboardingStore = create<OnboardingState>((set) => ({
   nextStep: (step: Step) => set(() => ({ currentStep: step })),
   completeOnboarding: () => set({ completed: true }),
 }));
+
+export type FilterType = "all" | "fresh" | "soon" | "expired";
