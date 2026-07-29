@@ -5,7 +5,7 @@ import { productItems, type ProductItem } from "@/data/products";
 import { useAddedProductStore } from "@/store/productStore";
 import { useOnboardingStore } from "@/store/onboardingStore";
 import { useTranslation, Trans } from "react-i18next";
-import { useLanguage } from "@/utils/useLangugae";
+import { useLanguage } from "@/utils/useLanguage";
 import AddButton from "@/components/AddButton";
 import DateInput from "./DateInput";
 import ProductInput from "./ProductInput";
@@ -37,7 +37,7 @@ export default function AddProduct({
   const addProduct = useAddedProductStore((state) => state.addProduct);
   const addedProducts = useAddedProductStore((state) => state.addedProducts);
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
-  const setNextStep = useOnboardingStore((state) => state.nextStep);
+  const setNextStep = useOnboardingStore((state) => state.setStep);
 
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();

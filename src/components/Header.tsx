@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { ru, enGB } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
 import FresherLogo from "./../assets/fresher.svg";
-import { useLanguage } from "@/utils/useLangugae";
+import { useLanguage } from "@/utils/useLanguage";
 
 export default function Header() {
   const { currentLanguage } = useLanguage();

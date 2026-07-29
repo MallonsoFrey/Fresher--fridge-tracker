@@ -16,7 +16,7 @@ export default function ExpDateStats() {
 
   const expDates = addedProducts.reduce(
     (acc: Record<ExpirationStatus, AddedProductItem[]>, p) => {
-      const { isExpired, isSoon } = getProductStatus(p.expDate);
+      const { isExpired, isSoon } = getProductStatus(new Date(p.expDate));
 
       if (isExpired) {
         if (!acc["expired"]) {
@@ -43,11 +43,13 @@ export default function ExpDateStats() {
   const soonToExpire: AddedProductItem | null = expDates["soon"]
     ? expDates["soon"].length > 1
       ? expDates["soon"]?.sort(
-          (a, b) => a.expDate.getTime() - b.expDate.getTime(),
+          (a, b) => new Date(a.expDate).getTime() - new Date(b.expDate).getTime(),
         )[0]
       : expDates["soon"][0]
     : null;
-  const soonToExpDate = soonToExpire?.expDate.getTime();
+  const soonToExpDate = soonToExpire?.expDate
+    ? new Date(soonToExpire.expDate).getTime()
+    : 0;
   const timeDif = soonToExpDate
     ? (soonToExpDate - currentDate) / (1000 * 60 * 60 * 24)
     : 0;
@@ -58,7 +60,7 @@ export default function ExpDateStats() {
       className="flex pb-5 md:pb-0 overflow-x-auto
 md:overflow-hidden h-auto gap-3"
     >
-      {expDates.fresh.length > 0 && (
+      {expDates["fresh"] && (
         <ExpDateCard
           emoji="🥬"
           bgColor="bg-[#EAF3E3]"
@@ -74,7 +76,7 @@ md:overflow-hidden h-auto gap-3"
           </span>
         </ExpDateCard>
       )}
-      {expDates.soon.length > 0 && (
+      {expDates["soon"] && (
         <ExpDateCard
           emoji="⏳"
           bgColor="bg-[#F7EFD9]"
@@ -102,7 +104,7 @@ md:overflow-hidden h-auto gap-3"
           </div>
         </ExpDateCard>
       )}
-      {expDates.expired.length > 0 && (
+      {expDates["expired"] && (
         <ExpDateCard
           emoji="❌"
           bgColor="bg-[#F3DDDD]"

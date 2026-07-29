@@ -5,7 +5,7 @@ import DeleteProductModal from "../../components/DeleteProductModal";
 import ProductCard from "@/widgets/AddedProducts/ProductCard";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/utils/useLangugae";
+import { useLanguage } from "@/utils/useLanguage";
 import { type FilterType } from "@/store/productStore";
 import Filter from "./Filter";
 import Search from "./Search";
@@ -17,7 +17,7 @@ export default function AddedProducts() {
   const completeOnboarding = useOnboardingStore(
     (state) => state.completeOnboarding,
   );
-  const setNextStep = useOnboardingStore((state) => state.nextStep);
+  const setNextStep = useOnboardingStore((state) => state.setStep);
   const [isToDelete, setIsToDelete] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState<string | null>(
     null,
@@ -55,7 +55,8 @@ export default function AddedProducts() {
     const { difInDays } = getDifferenceInDays(product.expDate, currentLanguage);
 
     if (chosenFilter === "all") return true;
-    if (chosenFilter === "soon" && difInDays >= 0 && difInDays <= 3) return true;
+    if (chosenFilter === "soon" && difInDays >= 0 && difInDays <= 3)
+      return true;
     if (chosenFilter === "fresh" && difInDays > 3) return true;
     if (chosenFilter === "expired" && difInDays < 0) return true;
     return false;

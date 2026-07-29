@@ -7,7 +7,7 @@ export default function EmptyFridge({
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
-  const setNextStep = useOnboardingStore((state) => state.nextStep);
+  const setNextStep = useOnboardingStore((state) => state.setStep);
 
   const { t } = useTranslation();
 
