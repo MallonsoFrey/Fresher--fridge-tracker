@@ -1,26 +1,26 @@
 import { useState } from "react";
 import { ru, enGB } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/utils/useLangugae";
 
 export default function LanguageToggle() {
   const [isEnabled, setIsEnabled] = useState(false);
-  const { i18n } = useTranslation();
-  const locale = i18n.language === "ru" ? ru : enGB;
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const locale = currentLanguage === "ru" ? ru : enGB;
 
-  const changeLanguage = () => {
+  const toggleLanguage = () => {
     if (locale === ru && !isEnabled) {
-      i18n.changeLanguage("en");
+      changeLanguage();
       setIsEnabled(true);
     } else {
-      i18n.changeLanguage("ru");
+      changeLanguage();
       setIsEnabled(false);
     }
   };
 
   return (
-    <div className="absolute md:right-3 md:top-4 right-5 top-[13%] outline-none">
+    <div className="absolute md:right-3 md:top-[3.5vh] right-5 top-[9vh] outline-none">
       <button
-        onClick={() => changeLanguage()}
+        onClick={() => toggleLanguage()}
         className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors 
       bg-gray-300"
       >
@@ -31,7 +31,9 @@ export default function LanguageToggle() {
               : "translate-x-1 bg-[url('@/assets/russian-flag.svg')]"
           }`}
         />
-        <span className={`text-xs font-bold baseline absolute ${isEnabled ? "left-1.5" : "right-1.5"}`}>
+        <span
+          className={`text-xs font-bold baseline absolute ${isEnabled ? "left-1.5" : "right-1.5"}`}
+        >
           {isEnabled ? "en" : "ru"}
         </span>
       </button>

@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { useAddedProducts } from "@/store/store";
-import { useOnboardingStore } from "@/store/store";
+import { useAddedProductStore } from "@/store/productStore";
+import { useOnboardingStore } from "@/store/onboardingStore";
 import DeleteProductModal from "../../components/DeleteProductModal";
 import ProductCard from "@/widgets/AddedProducts/ProductCard";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
-import { type FilterType } from "@/store/store";
+import { useLanguage } from "@/utils/useLangugae";
+import { type FilterType } from "@/store/productStore";
 import Filter from "./Filter";
 import Search from "./Search";
 import Onboarding from "./Onboarding";
 
 export default function AddedProducts() {
-  const addedProducts = useAddedProducts((state) => state.addedProducts);
+  const addedProducts = useAddedProductStore((state) => state.addedProducts);
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
   const completeOnboarding = useOnboardingStore(
     (state) => state.completeOnboarding,
@@ -23,9 +24,8 @@ export default function AddedProducts() {
   );
   const [chosenFilter, setChosenFilter] = useState<FilterType>("all");
   const [searchedProduct, setSearchedProduct] = useState<string>("");
-  const { t, i18n } = useTranslation();
-
-  const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
+  const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
 
   const scrollUp = () => {
     window.scrollTo({
@@ -50,10 +50,12 @@ export default function AddedProducts() {
   }
 
   const filteredProducts = addedProducts?.filter((product) => {
+    if (!product.expDate) return false;
+
     const { difInDays } = getDifferenceInDays(product.expDate, currentLanguage);
 
     if (chosenFilter === "all") return true;
-    if (chosenFilter === "soon" && difInDays > 0 && difInDays <= 3) return true;
+    if (chosenFilter === "soon" && difInDays >= 0 && difInDays <= 3) return true;
     if (chosenFilter === "fresh" && difInDays > 3) return true;
     if (chosenFilter === "expired" && difInDays < 0) return true;
     return false;
@@ -94,7 +96,7 @@ export default function AddedProducts() {
       <div
         className={`relative flex gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px] ${onboardingStep === 2 ? "z-40" : ""}`}
       >
-        <h2 className="text-[20px] text-[#687063] font-bold flex justify-between">
+        <h2 className="text-[20px]   font-bold flex justify-between">
           {t("addedProducts.title")}
           <span className="bg-[#EDF2E7] rounded-full py-2 px-4 text-sm">
             {addedProducts.length > 0 ? addedProducts.length : 0}

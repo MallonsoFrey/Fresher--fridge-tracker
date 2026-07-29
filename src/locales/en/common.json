@@ -2,7 +2,7 @@
   "emptyFridge": {
     "title": "Welcome!",
     "subtitle": "Your fridge is empty for now",
-    "description": "Start adding products, and <img/> will help you track their expiration dates and remind you when it's time to use them.",
+    "description": "Start adding products, and <strong>fresher</strong> will help you track their expiration dates and remind you when it's time to use them.",
     "examples": "For example",
     "products": {
       "milk": "Milk",

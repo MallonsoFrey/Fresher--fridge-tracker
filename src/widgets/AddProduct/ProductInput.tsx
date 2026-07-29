@@ -33,7 +33,7 @@ export default function ProductInput({
         product?.name?.[currentLanguage].toLowerCase().includes(q),
       )
       .slice(0, 8);
-  }, [productName, currentLanguage]);
+  }, [productName, currentLanguage, productItems]);
 
   useEffect(() => {
     if (!resetKey) return;
@@ -41,21 +41,18 @@ export default function ProductInput({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProductName("");
     setSelectedProduct(null);
-  }, [resetKey]);
+  }, [resetKey, setSelectedProduct]);
 
   return (
     <div className="relative flex flex-col gap-2 mb-5">
-      <label
-        htmlFor="product-name"
-        className="text-sm text-[#687063] font-bold"
-      >
+      <label htmlFor="product-name" className="text-sm   font-bold">
         {labelName}
       </label>
       <input
         ref={firstSearch}
         type="text"
         placeholder={placeholder}
-        className="w-full h-12 px-4 text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
+        className="w-full h-12 md:text-sm px-4 text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
         value={productName}
         onChange={(e) => {
           setProductName(e.target.value);

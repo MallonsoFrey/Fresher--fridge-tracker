@@ -37,7 +37,7 @@ export default function DateInput({
     setDateValue("");
     setSelectedDate(undefined);
     setMonth(new Date());
-  }, [resetKey]);
+  }, [resetKey, setSelectedDate]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { masked, isComplete } = maskDateInput(e.target.value);
@@ -108,11 +108,11 @@ export default function DateInput({
 
   return (
     <div ref={calendarRef} className="relative flex flex-col gap-2">
-      <label htmlFor="expiry-date" className="text-sm text-[#687063] font-bold">
+      <label htmlFor="expiry-date" className="text-sm   font-bold">
         {inputLabel}
       </label>
       <input
-        className="w-full h-12 px-4 text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
+        className="w-full h-12 px-4 md:text-sm text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
         id="date-input"
         type="text"
         value={dateValue}

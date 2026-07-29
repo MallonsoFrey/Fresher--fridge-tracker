@@ -1,12 +1,13 @@
-import { useAddedProducts } from "@/store/store";
-import { type ExpirationStatus, type ProductItem } from "@/data/products";
+import { useAddedProductStore } from "@/store/productStore";
+import { type ExpirationStatus, type AddedProductItem } from "@/data/products";
 import getProductWord from "@/utils/getProductWord";
 import getDayWord from "@/utils/getDayWord";
 import { useTranslation } from "react-i18next";
 import getProductStatus from "@/utils/getProductStatus";
+import ExpDateCard from "./ExpDateCard";
 
 export default function ExpDateStats() {
-  const addedProducts = useAddedProducts((state) => state.addedProducts);
+  const addedProducts = useAddedProductStore((state) => state.addedProducts);
   const currentDate = new Date().getTime();
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
@@ -14,7 +15,7 @@ export default function ExpDateStats() {
   if (!addedProducts.length) return null;
 
   const expDates = addedProducts.reduce(
-    (acc: Record<ExpirationStatus, ProductItem[]>, p) => {
+    (acc: Record<ExpirationStatus, AddedProductItem[]>, p) => {
       const { isExpired, isSoon } = getProductStatus(p.expDate);
 
       if (isExpired) {
@@ -35,11 +36,11 @@ export default function ExpDateStats() {
       }
       return acc;
     },
-    {} as Record<ExpirationStatus, ProductItem[]>,
+    {} as Record<ExpirationStatus, AddedProductItem[]>,
   );
   const theLastAdded = expDates.fresh?.at(-1);
 
-  const soonToExpire: ProductItem | null = expDates["soon"]
+  const soonToExpire: AddedProductItem | null = expDates["soon"]
     ? expDates["soon"].length > 1
       ? expDates["soon"]?.sort(
           (a, b) => a.expDate.getTime() - b.expDate.getTime(),
@@ -57,91 +58,61 @@ export default function ExpDateStats() {
       className="flex pb-5 md:pb-0 overflow-x-auto
 md:overflow-hidden h-auto gap-3"
     >
-      {expDates["fresh"] && (
-        <div className="flex gap-3 flex-col min-w-[218px] p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
-          <div className="flex flex-row-reverse md:flex-row justify-between items-center">
-            <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#EAF3E3]">
-              🥬
-            </div>
-            <span className="inline-block h-fit md:text-sm font-bold text-[#59744D] bg-[#E3EFDA] rounded-[100px] py-1 px-2">
-              {t("expDateStats.fresh")}
-            </span>
-          </div>
-          <div>
-            <span className="text-[28px] md:text-lg font-bold mr-2">
-              {expDates["fresh"].length}
-            </span>
-            <span className="text-[20px] font-bold md:text-[10px]">
-              {getProductWord(expDates["fresh"].length, currentLanguage)}
-            </span>
-          </div>
-          <div className="flex flex-col text-[14px] md:text-[12px] text-[#687063]">
-            {t("expDateStats.lastAdded")}
-            <span className="font-bold">
-              {theLastAdded?.name[currentLanguage]}
-            </span>
-          </div>
-        </div>
+      {expDates.fresh.length > 0 && (
+        <ExpDateCard
+          emoji="🥬"
+          bgColor="bg-[#EAF3E3]"
+          textColor="text-[#59744D]"
+          status={t("expDateStats.fresh")}
+          amount={expDates.fresh.length}
+          expText={getProductWord(expDates.fresh.length, currentLanguage)}
+        >
+          <span>{t("expDateStats.lastAdded")}</span>
+
+          <span className="font-bold">
+            {theLastAdded?.name[currentLanguage]}
+          </span>
+        </ExpDateCard>
       )}
-      {expDates["soon"] && (
-        <div className="flex gap-3 flex-col min-w-[218px]  p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
-          <div className="flex flex-row-reverse md:flex-row justify-between items-center">
-            <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F7EFD9]">
-              ⏳
-            </div>
-            <span className="inline-block h-fit md:text-sm font-bold text-[#866921] bg-[#F7EFD9] rounded-[100px] py-1 px-2">
-              {t("expDateStats.soon")}
-            </span>
+      {expDates.soon.length > 0 && (
+        <ExpDateCard
+          emoji="⏳"
+          bgColor="bg-[#F7EFD9]"
+          textColor="text-[#866921]"
+          status={t("expDateStats.soon")}
+          amount={expDates.soon.length}
+          expText={getProductWord(expDates.soon.length, currentLanguage)}
+        >
+          <span>{t("expDateStats.nearest")}</span>
+
+          <div className="font-bold flex flex-col">
+            <span>{soonToExpire?.name[currentLanguage]}</span>
+
+            {difInDays === 0 ? (
+              <span>{t("expDateStats.spoilsToday")}</span>
+            ) : (
+              <span className="font-normal">
+                {t("expDateStats.inDays")}
+
+                <span className="font-bold">{difInDays}</span>
+
+                {getDayWord(difInDays, currentLanguage)}
+              </span>
+            )}
           </div>
-          <div>
-            <span className="text-[28px] md:text-lg font-bold mr-2">
-              {expDates["soon"].length}
-            </span>
-            <span className="text-[20px] font-bold md:text-[14px]">
-              {getProductWord(expDates["soon"].length, currentLanguage)}
-            </span>
-          </div>
-          <div className="flex text-[14px] flex-col md:text-[12px] text-[#687063]">
-            {t("expDateStats.nearest")}
-            <span className="font-bold flex-col flex-wrap flex justify-between">
-              {soonToExpire?.name[currentLanguage]}
-              {difInDays == 0 ? (
-                <span className="font-bold">
-                  {t("expDateStats.spilsToday")}
-                </span>
-              ) : (
-                <span className="font-normal">
-                  {t("expDateStats.inDays")}
-                  <span className="font-bold">{difInDays}</span>
-                  {getDayWord(difInDays, currentLanguage)}
-                </span>
-              )}
-            </span>
-          </div>
-        </div>
+        </ExpDateCard>
       )}
-      {expDates["expired"] && (
-        <div className="flex gap-3 flex-col min-w-[218px] p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
-          <div className="flex flex-row-reverse md:flex-row justify-between items-center">
-            <div className="max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 bg-[#F3DDDD]">
-              ❌
-            </div>
-            <span className="inline-block h-fit md:text-sm font-bold text-[#9A5752] bg-[#F3DDDD] rounded-[100px] py-1 px-2">
-              {t("expDateStats.expired")}
-            </span>
-          </div>
-          <div>
-            <span className="text-[28px] md:text-lg font-bold mr-2">
-              {expDates["expired"].length}
-            </span>
-            <span className="text-[20px] font-bold md:text-[14px]">
-              {getProductWord(expDates["expired"].length, currentLanguage)}
-            </span>
-          </div>
-          <div className="text-[14px] flex font-bold md:text-[12px] text-[#687063]">
-            {t("expDateStats.checkFridge")}
-          </div>
-        </div>
+      {expDates.expired.length > 0 && (
+        <ExpDateCard
+          emoji="❌"
+          bgColor="bg-[#F3DDDD]"
+          textColor="text-[#9A5752]"
+          status={t("expDateStats.expired")}
+          amount={expDates.expired.length}
+          expText={getProductWord(expDates.expired.length, currentLanguage)}
+        >
+          <span className="font-bold">{t("expDateStats.checkFridge")}</span>
+        </ExpDateCard>
       )}
     </div>
   );

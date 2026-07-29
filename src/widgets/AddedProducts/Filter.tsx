@@ -1,4 +1,4 @@
-import type { FilterType } from "@/store/store";
+import type { FilterType } from "@/store/productStore";
 
 type FilterProps = {
   chosenFilter: FilterType;
@@ -12,7 +12,7 @@ export default function Filter({
   filters,
 }: FilterProps) {
   return (
-    <ul className="md:text-[12px] items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] text-[#687063] flex gap-3 justify-center">
+    <ul className="md:text-[12px] items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA]   flex gap-3 justify-center">
       {Object.entries(filters).map(([key, label]) => (
         <li
           key={key}

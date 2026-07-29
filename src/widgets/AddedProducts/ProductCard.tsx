@@ -1,4 +1,4 @@
-import { type ProductItem } from "@/data/products";
+import { type AddedProductItem } from "@/data/products";
 import getDayWord from "@/utils/getDayWord";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
@@ -6,8 +6,8 @@ import DeleteIcon from "@/components/DeleteIcon";
 import getProductStatus from "@/utils/getProductStatus";
 
 type ProductCardProps = {
-  product: ProductItem;
-  onDeleteProduct: (id: ProductItem["id"]) => void;
+  product: AddedProductItem;
+  onDeleteProduct: (id: AddedProductItem["id"]) => void;
 };
 
 export default function ProductCard({
@@ -16,13 +16,14 @@ export default function ProductCard({
 }: ProductCardProps) {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
+  const expDate = product.expDate ?? new Date();
 
   const { difInDays, parsedDate } = getDifferenceInDays(
-    product.expDate,
+    expDate,
     currentLanguage,
   );
 
-  const { isExpired, isSoon } = getProductStatus(product.expDate);
+  const { isExpired, isSoon } = getProductStatus(expDate);
 
   let statusText: string;
   let statusClass: string;
@@ -71,7 +72,7 @@ export default function ProductCard({
         </div>
         <span className="text-xs">{expiresText}</span>
         {parsedDate && (
-          <span className="text-[8px] text-[#687063]">
+          <span className="text-[8px]  ">
             {t("productCard.expires.until")} {parsedDate}
           </span>
         )}

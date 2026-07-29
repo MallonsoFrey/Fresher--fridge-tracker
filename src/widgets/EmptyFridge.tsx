@@ -1,6 +1,5 @@
-import { useOnboardingStore } from "@/store/store";
+import { useOnboardingStore } from "@/store/onboardingStore";
 import { useTranslation, Trans } from "react-i18next";
-import FresherLogo from "./../assets/fresher.svg";
 
 export default function EmptyFridge({
   setSearchFirstProduct,
@@ -23,23 +22,21 @@ export default function EmptyFridge({
   return (
     <div className="text-center h-fit w-full flex flex-col justify-center items-center gap-5 p-5">
       <div>
-        <h1 className="text-3xl text-[#687063] font-bold mb-10">
-          {t("emptyFridge.title")}
-        </h1>
+        <h1 className="text-3xl font-bold mb-10">{t("emptyFridge.title")}</h1>
 
-        <h2 className="text-[#687063] mb-4">{t("emptyFridge.subtitle")}</h2>
+        <h2 className="mb-4">{t("emptyFridge.subtitle")}</h2>
 
-        <p className="text-[#687063]">
+        <p>
           <Trans
             i18nKey="emptyFridge.description"
             components={{
-              img: <img className="w-20 inline-block align-baseline" src={FresherLogo} alt="brand logo"/>,
+              strong: <strong className="font-bold" />,
             }}
           />
         </p>
       </div>
 
-      <div className="text-[#687063]">
+      <div>
         <p className="font-bold mb-3">{t("emptyFridge.examples")}</p>
         <ul className="list-none list-inside flex gap-1 justify-center flex-wrap text-left">
           <li className="shadow-sm text-left w-[150px] flex items-center gap-3 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[_rgba(255,255,255,0.98)] p-2 text-sm">

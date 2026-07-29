@@ -2,11 +2,11 @@ import { useState } from "react";
 import AddProduct from "@/widgets/AddProduct/AddProduct";
 import EmptyFridge from "@widgets/EmptyFridge";
 import AddedProducts from "@/widgets/AddedProducts/AddedProducts";
-import { useAddedProducts } from "@/store/store";
+import { useAddedProductStore } from "@/store/productStore";
 import ExpDateStats from "@/widgets/ExpDateStats/ExpDateStats";
 
 export default function Home() {
-  const addedProducts = useAddedProducts((state) => state.addedProducts);
+  const addedProducts = useAddedProductStore((state) => state.addedProducts);
   const [searchFirstProduct, setSearchFirstProduct] = useState(false);
 
   return (

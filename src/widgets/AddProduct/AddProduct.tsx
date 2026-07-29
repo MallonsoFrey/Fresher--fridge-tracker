@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import "react-day-picker/dist/style.css";
 import { enGB, ru } from "date-fns/locale";
 import { productItems, type ProductItem } from "@/data/products";
-import { useAddedProducts } from "@/store/store";
-import { useOnboardingStore } from "@/store/store";
+import { useAddedProductStore } from "@/store/productStore";
+import { useOnboardingStore } from "@/store/onboardingStore";
 import { useTranslation, Trans } from "react-i18next";
+import { useLanguage } from "@/utils/useLangugae";
 import AddButton from "@/components/AddButton";
 import DateInput from "./DateInput";
 import ProductInput from "./ProductInput";
@@ -33,14 +34,14 @@ export default function AddProduct({
     setErrors({ product: "", date: "" });
   };
 
-  const addProduct = useAddedProducts((state) => state.addProduct);
-  const addedProducts = useAddedProducts((state) => state.addedProducts);
+  const addProduct = useAddedProductStore((state) => state.addProduct);
+  const addedProducts = useAddedProductStore((state) => state.addedProducts);
   const onboardingStep = useOnboardingStore((state) => state.currentStep);
   const setNextStep = useOnboardingStore((state) => state.nextStep);
 
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language.startsWith("ru") ? "ru" : "en";
-  const locale = i18n.language === "ru" ? ru : enGB;
+  const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
+  const locale = currentLanguage === "ru" ? ru : enGB;
 
   const scrollDown = () => {
     window.scrollTo({
@@ -90,11 +91,9 @@ export default function AddProduct({
         className={`w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 ${onboardingStep === 1 ? "z-30" : ""}`}
       >
         <div className="mb-5">
-          <h2 className="text-2xl text-[#687063] font-bold">
-            {t("addProduct.title")}
-          </h2>
+          <h2 className="text-2xl   font-bold">{t("addProduct.title")}</h2>
 
-          <p className="text-xs text-[#687063]">{t("addProduct.subtitle")}</p>
+          <p className="text-xs  ">{t("addProduct.subtitle")}</p>
         </div>
 
         <ProductInput

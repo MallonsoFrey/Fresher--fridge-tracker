@@ -9,10 +9,13 @@ export type ProductItem = {
     en: string;
     ru: string;
   };
-  category?: string;
+  category: string;
+  storage: StorageLocation[];
+};
+
+export type AddedProductItem = ProductItem & {
   expDate: Date;
   addedDate: Date;
-  storage?: StorageLocation[];
 };
 
 export type ProductsDataset = {
