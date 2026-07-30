@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import type { ProductItem } from "@/data/products";
 
 type ProductInputProps = {
@@ -24,12 +24,12 @@ export default function ProductInput({
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const chooseSuggestion = (p: ProductItem) => {
+  const chooseSuggestion = useCallback((p: ProductItem) => {
     setProductName(p.name[currentLanguage]);
     setSelectedProduct(p);
     setIsSuggestionsOpen(false);
     setActiveIndex(-1);
-  };
+  }, [currentLanguage, setSelectedProduct]);
 
   const productSuggestions: ProductItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
