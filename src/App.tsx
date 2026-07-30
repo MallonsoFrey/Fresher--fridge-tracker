@@ -4,7 +4,7 @@ import LanguageToggle from "./components/LanguageToggle";
 
 function App() {
   return (
-    <div className="p-5 flex flex-col md:flex-row h-auto pb-20 md:mb-20 md:h-screen md:gap-[40px] max-w-[1350px] m-auto">
+    <div className="p-5 flex flex-col md:flex-row h-auto pb-20 md:mb-20 md:h-screen md:gap-[75px] max-w-[1350px] m-auto">
       <LanguageToggle />
       <Header />
       <Home />

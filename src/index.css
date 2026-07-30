@@ -48,6 +48,11 @@ input:active {
   color: #4f574d;
 }
 
+.rdp-day:hover {
+  background: #eaf3e3;
+  border-radius: 100%;
+}
+
 .gradient {
   background: RGBA(236, 242, 230, 0.9);
   background: linear-gradient(

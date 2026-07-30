@@ -3,13 +3,13 @@ import "react-day-picker/dist/style.css";
 import { enGB, ru } from "date-fns/locale";
 import { productItems, type ProductItem } from "@/data/products";
 import { useAddedProductStore } from "@/store/productStore";
-import { useOnboardingStore } from "@/store/onboardingStore";
 import { useTranslation, Trans } from "react-i18next";
 import { useLanguage } from "@/utils/useLanguage";
+import getProductStatus from "@/utils/getProductStatus";
 import AddButton from "@/components/AddButton";
 import DateInput from "./DateInput";
 import ProductInput from "./ProductInput";
-import Onboarding from "./Onboarding";
+import ExpiredProductModal from "./ExpiredProductModal";
 
 type Errors = {
   product?: string;
@@ -24,6 +24,7 @@ export default function AddProduct({
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [isExpiredToSave, setIsExpiredToSave] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
     null,
@@ -36,8 +37,6 @@ export default function AddProduct({
 
   const addProduct = useAddedProductStore((state) => state.addProduct);
   const addedProducts = useAddedProductStore((state) => state.addedProducts);
-  const onboardingStep = useOnboardingStore((state) => state.currentStep);
-  const setNextStep = useOnboardingStore((state) => state.setStep);
 
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
@@ -58,7 +57,6 @@ export default function AddProduct({
       if (window.innerWidth < window.innerHeight) {
         scrollDown();
       } else {
-        if (onboardingStep === 0) setNextStep(1);
         firstSearch.current?.focus();
       }
 
@@ -68,28 +66,38 @@ export default function AddProduct({
     return () => window.clearTimeout(timeoutId);
   }, [searchFirstProduct]);
 
+  const saveProduct = (product: ProductItem, date: Date) => {
+    addProduct({
+      ...product,
+      expDate: date,
+      addedDate: new Date(),
+      id: window.crypto.randomUUID(),
+    });
+    setResetKey((prev) => prev + 1);
+  };
+
   const validateAndSave = () => {
-    if (selectedProduct && selectedDate) {
-      cleanErrors();
-      addProduct({
-        ...selectedProduct,
-        expDate: selectedDate,
-        addedDate: new Date(),
-      });
-      setResetKey((prev) => prev + 1);
-    } else {
+    if (!selectedProduct || !selectedDate) {
       setErrors({
         product: !selectedProduct ? "addProduct.errors.product" : "",
         date: !selectedDate ? "addProduct.errors.date" : "",
       });
+      return;
     }
+
+    const { isExpired } = getProductStatus(selectedDate);
+    if (isExpired) {
+      setIsExpiredToSave(true);
+      return;
+    }
+
+    cleanErrors();
+    saveProduct(selectedProduct, selectedDate);
   };
 
   return (
     <>
-      <div
-        className={`w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 ${onboardingStep === 1 ? "z-30" : ""}`}
-      >
+      <div className="w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
         <div className="mb-5">
           <h2 className="text-2xl   font-bold">{t("addProduct.title")}</h2>
 
@@ -132,9 +140,6 @@ export default function AddProduct({
         </div>
         <button
           onClick={() => {
-            if (onboardingStep === 1) {
-              setNextStep(2);
-            }
             validateAndSave();
           }}
           className="flex justify-center items-center w-full h-6 transition-transform duration-100 ease-in-out active:translate-y-[3px] active:shadow-md active:bg-[#4c6046] hover:shadow-md bg-[#6F8D67] hover:bg-[#4c6046] text-white text-sm py-4 px-5 rounded-[22px]"
@@ -146,11 +151,18 @@ export default function AddProduct({
         addedProductsLength={addedProducts.length}
         onClick={() => scrollDown()}
       />
-      {onboardingStep === 1 && (
-        <Onboarding
-          description={t("addProduct.onboarding.description")}
-          onboardingStep={onboardingStep}
-          setNextStep={() => setNextStep(2)}
+      {isExpiredToSave && (
+        <ExpiredProductModal
+          onCancel={() => setIsExpiredToSave(false)}
+          onConfirm={() => {
+            if (!selectedProduct || !selectedDate) {
+              return;
+            }
+
+            cleanErrors();
+            saveProduct(selectedProduct, selectedDate);
+            setIsExpiredToSave(false);
+          }}
         />
       )}
     </>

@@ -1,4 +1,3 @@
-import { useOnboardingStore } from "@/store/onboardingStore";
 import { useTranslation, Trans } from "react-i18next";
 
 export default function EmptyFridge({
@@ -6,16 +5,9 @@ export default function EmptyFridge({
 }: {
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const onboardingStep = useOnboardingStore((state) => state.currentStep);
-  const setNextStep = useOnboardingStore((state) => state.setStep);
-
   const { t } = useTranslation();
 
   const handleAddFirstProduct = () => {
-    if (onboardingStep === 0) {
-      setNextStep(1);
-    }
-
     setSearchFirstProduct(true);
   };
 

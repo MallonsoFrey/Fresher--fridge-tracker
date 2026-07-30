@@ -14,6 +14,7 @@ export type ProductItem = {
 };
 
 export type AddedProductItem = ProductItem & {
+  id: string;
   expDate: Date;
   addedDate: Date;
 };

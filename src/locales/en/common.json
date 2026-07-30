@@ -14,15 +14,12 @@
     "title": "Add product",
     "subtitle": "Keep your products fresh",
     "productName": "Name",
-    "searchBar": "Start typing a product name",
+    "searchBar": "Type a product name",
     "productExpDate": "Expiration date",
     "calendarAriaLabel": "Open the calendar and select a date",
     "errors": {
       "product": "Select a product from <strong>the list</strong>",
       "date": "Enter expiration date"
-    },
-    "onboarding": {
-      "description": "Select a product from the list and enter its expiration date here. Give it a try!"
     }
   },
   "addedProducts": {
@@ -33,11 +30,6 @@
       "fresh": "Fresh",
       "soon": "Expiring soon",
       "expired": "Expired"
-    },
-    "onboarding": {
-      "title": "You've added your first product! 🎉",
-      "description": "From now on, your products will appear in the section ",
-      "widgetName": "\"In your fridge\""
     }
   },
   "productCard": {
@@ -67,11 +59,16 @@
   "deleteProductModal": {
     "description": "Are you sure you want to delete this item?"
   },
+  "expiredProductModal": {
+    "title": "This product is already expired",
+    "description": "Are you sure you want to add it?"
+  },
   "buttons": {
     "firstAddButton": "Add your first product",
     "save": "Save",
     "cancel": "Cancel",
-    "delete": "Delete"
+    "delete": "Delete",
+    "add": "Add"
   },
   "date": {
     "today": "Today"

@@ -22,6 +22,14 @@ export default function ProductInput({
 }: ProductInputProps) {
   const [productName, setProductName] = useState("");
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const chooseSuggestion = (p: ProductItem) => {
+    setProductName(p.name[currentLanguage]);
+    setSelectedProduct(p);
+    setIsSuggestionsOpen(false);
+    setActiveIndex(-1);
+  };
 
   const productSuggestions: ProductItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
@@ -43,12 +51,64 @@ export default function ProductInput({
     setSelectedProduct(null);
   }, [resetKey, setSelectedProduct]);
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (!isSuggestionsOpen || productSuggestions.length === 0) {
+        return;
+      }
+
+      if (productSuggestions.length > 0) {
+        switch (event.key) {
+          case "ArrowUp":
+            event.preventDefault();
+            setActiveIndex((prev) => (prev === -1 ? -1 : prev - 1));
+            break;
+
+          case "ArrowDown":
+            event.preventDefault();
+            setActiveIndex((prev) =>
+              prev === productSuggestions.length - 1
+                ? productSuggestions.length - 1
+                : prev + 1,
+            );
+            break;
+
+          case "Enter":
+            if (activeIndex !== -1) {
+              event.preventDefault();
+              chooseSuggestion(productSuggestions[activeIndex]);
+            }
+            break;
+
+          case "Escape":
+            setIsSuggestionsOpen(false);
+            setActiveIndex(-1);
+            break;
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeIndex, productSuggestions, chooseSuggestion, isSuggestionsOpen]);
+
   return (
     <div className="relative flex flex-col gap-2 mb-5">
       <label htmlFor="product-name" className="text-sm   font-bold">
         {labelName}
       </label>
       <input
+        role="combobox"
+        aria-expanded={isSuggestionsOpen}
+        aria-controls="product-suggestions"
+        aria-activedescendant={
+          activeIndex >= 0
+            ? `product-suggestion-${productSuggestions[activeIndex].id}`
+            : undefined
+        }
         ref={firstSearch}
         type="text"
         placeholder={placeholder}
@@ -64,18 +124,21 @@ export default function ProductInput({
         }}
       />
       {isSuggestionsOpen && productSuggestions.length > 0 && (
-        <div className="absolute z-40 top-full mt-2 w-full rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg overflow-hidden">
-          {productSuggestions.map((p) => (
+        <div
+          id="product-suggestions"
+          role="listbox"
+          className="absolute z-40 top-full mt-2 w-full rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg overflow-hidden"
+        >
+          {productSuggestions.map((p, index) => (
             <button
+              id={`product-suggestion-${p.id}`}
+              role="option"
+              aria-selected={activeIndex === index}
               type="button"
               key={p.id}
-              className="w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2"
+              className={`${activeIndex === index ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => {
-                setProductName(p.name[currentLanguage]);
-                setSelectedProduct(p);
-                setIsSuggestionsOpen(false);
-              }}
+              onClick={() => chooseSuggestion(p)}
             >
               <span>{p.emoji}</span>
               <span>{p.name[currentLanguage]}</span>

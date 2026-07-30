@@ -43,7 +43,8 @@ export default function ExpDateStats() {
   const soonToExpire: AddedProductItem | null = expDates["soon"]
     ? expDates["soon"].length > 1
       ? expDates["soon"]?.sort(
-          (a, b) => new Date(a.expDate).getTime() - new Date(b.expDate).getTime(),
+          (a, b) =>
+            new Date(a.expDate).getTime() - new Date(b.expDate).getTime(),
         )[0]
       : expDates["soon"][0]
     : null;
@@ -57,7 +58,7 @@ export default function ExpDateStats() {
 
   return (
     <div
-      className="flex pb-5 md:pb-0 overflow-x-auto
+      className="flex flex-row-reverse mr-auto pb-5 md:pb-0 overflow-x-auto
 md:overflow-hidden h-auto gap-3"
     >
       {expDates["fresh"] && (

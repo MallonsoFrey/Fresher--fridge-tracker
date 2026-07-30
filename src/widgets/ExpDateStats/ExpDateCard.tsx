@@ -18,7 +18,7 @@ export default function ExpDateCard({
   children: ReactNode;
 }) {
   return (
-    <div className="flex gap-3 flex-col w-[218px]  p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
+    <div className="flex gap-3 flex-col min-w-[218px] w-[218px] p-5 bg-[#FFFFFFD1] border-[#F4F2ECFA] border-2 rounded-[24px]">
       <div className="flex flex-row-reverse md:flex-row justify-between items-center">
         <div
           className={`max-w-[48px] max-h-[48px] select-none w-fit rounded-[100px] p-3 ${bgColor}`}
