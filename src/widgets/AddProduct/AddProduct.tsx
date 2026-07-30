@@ -64,7 +64,7 @@ export default function AddProduct({
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
-  }, [searchFirstProduct]);
+  }, [searchFirstProduct, setSearchFirstProduct]);
 
   const saveProduct = (product: ProductItem, date: Date) => {
     addProduct({
