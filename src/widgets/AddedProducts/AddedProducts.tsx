@@ -8,7 +8,7 @@ import { useLanguage } from "@/utils/useLanguage";
 import { type FilterType } from "@/store/productStore";
 import Filter from "./Filter";
 import Search from "./Search";
-import AddProductModal from "./AddProductModal";
+import AddProductModal from "@widgets/AddProduct/AddProductModal";
 
 export default function AddedProducts() {
   const addedProducts = useAddedProductStore((state) => state.addedProducts);
