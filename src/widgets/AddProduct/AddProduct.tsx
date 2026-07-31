@@ -6,10 +6,10 @@ import { useAddedProductStore } from "@/store/productStore";
 import { useTranslation, Trans } from "react-i18next";
 import { useLanguage } from "@/utils/useLanguage";
 import getProductStatus from "@/utils/getProductStatus";
-import AddButton from "@/components/AddButton";
 import DateInput from "./DateInput";
 import ProductInput from "./ProductInput";
 import ExpiredProductModal from "./ExpiredProductModal";
+import DeleteIcon from "@/components/DeleteIcon";
 
 type Errors = {
   product?: string;
@@ -19,9 +19,11 @@ type Errors = {
 export default function AddProduct({
   searchFirstProduct,
   setSearchFirstProduct,
+  setIsAddProductOpen,
 }: {
   searchFirstProduct: boolean;
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsAddProductOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isExpiredToSave, setIsExpiredToSave] = useState(false);
@@ -36,30 +38,16 @@ export default function AddProduct({
   };
 
   const addProduct = useAddedProductStore((state) => state.addProduct);
-  const addedProducts = useAddedProductStore((state) => state.addedProducts);
 
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const locale = currentLanguage === "ru" ? ru : enGB;
 
-  const scrollDown = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth",
-    });
-    firstSearch.current?.focus();
-  };
-
   useEffect(() => {
     if (!searchFirstProduct) return;
 
     const timeoutId = window.setTimeout(() => {
-      if (window.innerWidth < window.innerHeight) {
-        scrollDown();
-      } else {
-        firstSearch.current?.focus();
-      }
-
+      firstSearch.current?.focus();
       setSearchFirstProduct(false);
     }, 0);
 
@@ -93,15 +81,23 @@ export default function AddProduct({
 
     cleanErrors();
     saveProduct(selectedProduct, selectedDate);
+    if (setIsAddProductOpen) setIsAddProductOpen(false);
   };
 
   return (
     <>
-      <div className="w-full h-fit md:max-w-[312px] md:ml-auto flex flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2">
+      <div
+        className={`${setIsAddProductOpen ? "flex mx-5 relative" : "hidden"} md:flex w-full h-fit md:max-w-[312px] md:ml-auto flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2`}
+      >
+        {setIsAddProductOpen && (
+          <DeleteIcon
+            className={"absolute top-5 right-5 h-8 w-8"}
+            onClick={() => setIsAddProductOpen(false)}
+          />
+        )}
         <div className="mb-5">
-          <h2 className="text-2xl   font-bold">{t("addProduct.title")}</h2>
-
-          <p className="text-xs  ">{t("addProduct.subtitle")}</p>
+          <h2 className="text-2xl font-bold">{t("addProduct.title")}</h2>
+          <p className="text-xs">{t("addProduct.subtitle")}</p>
         </div>
 
         <ProductInput
@@ -147,10 +143,6 @@ export default function AddProduct({
           {t("buttons.save")}
         </button>
       </div>
-      <AddButton
-        addedProductsLength={addedProducts.length}
-        onClick={() => scrollDown()}
-      />
       {isExpiredToSave && (
         <ExpiredProductModal
           onCancel={() => setIsExpiredToSave(false)}

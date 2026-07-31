@@ -8,7 +8,7 @@ import { useLanguage } from "@/utils/useLanguage";
 import { type FilterType } from "@/store/productStore";
 import Filter from "./Filter";
 import Search from "./Search";
-//import Onboarding from "./Onboarding";
+import AddProductModal from "./AddProductModal";
 
 export default function AddedProducts() {
   const addedProducts = useAddedProductStore((state) => state.addedProducts);
@@ -20,13 +20,7 @@ export default function AddedProducts() {
   const [searchedProduct, setSearchedProduct] = useState<string>("");
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
-
-  /*   const scrollUp = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }; */
+  const [isAddProductOpen, setIsAddProductOpen] = useState(false);
 
   function onDeleteProduct(productId: string) {
     setIsToDelete(true);
@@ -62,13 +56,14 @@ export default function AddedProducts() {
 
   return (
     <>
-      <div className="w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
+      <div className="fixed bottom-0 left-0 z-10 bg-[#f6f4ee] p-3 md:p-0 md:static w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
         {addedProducts.length > 0 && (
           <>
             <Filter
               chosenFilter={chosenFilter}
               setChosenFilter={setChosenFilter}
               filters={filters}
+              addProduct={setIsAddProductOpen}
             />
             <Search
               searchedProduct={searchedProduct}
@@ -101,6 +96,12 @@ export default function AddedProducts() {
           <DeleteProductModal
             productIdToDelete={productIdToDelete}
             setIsToDelete={setIsToDelete}
+          />
+        )}
+        {isAddProductOpen && (
+          <AddProductModal
+            isAddProductOpen={isAddProductOpen}
+            setIsAddProductOpen={setIsAddProductOpen}
           />
         )}
       </div>

@@ -58,25 +58,22 @@ export default function ExpDateStats() {
 
   return (
     <div
-      className="flex flex-row-reverse mr-auto pb-5 md:pb-0 overflow-x-auto
+      className="flex pb-5 md:pb-0 overflow-x-auto
 md:overflow-hidden h-auto gap-3"
     >
-      {expDates["fresh"] && (
+      {expDates["expired"] && (
         <ExpDateCard
-          emoji="🥬"
-          bgColor="bg-[#EAF3E3]"
-          textColor="text-[#59744D]"
-          status={t("expDateStats.fresh")}
-          amount={expDates.fresh.length}
-          expText={getProductWord(expDates.fresh.length, currentLanguage)}
+          emoji="❌"
+          bgColor="bg-[#F3DDDD]"
+          textColor="text-[#9A5752]"
+          status={t("expDateStats.expired")}
+          amount={expDates.expired.length}
+          expText={getProductWord(expDates.expired.length, currentLanguage)}
         >
-          <span>{t("expDateStats.lastAdded")}</span>
-
-          <span className="font-bold">
-            {theLastAdded?.name[currentLanguage]}
-          </span>
+          <span className="font-bold">{t("expDateStats.checkFridge")}</span>
         </ExpDateCard>
       )}
+
       {expDates["soon"] && (
         <ExpDateCard
           emoji="⏳"
@@ -105,16 +102,20 @@ md:overflow-hidden h-auto gap-3"
           </div>
         </ExpDateCard>
       )}
-      {expDates["expired"] && (
+      {expDates["fresh"] && (
         <ExpDateCard
-          emoji="❌"
-          bgColor="bg-[#F3DDDD]"
-          textColor="text-[#9A5752]"
-          status={t("expDateStats.expired")}
-          amount={expDates.expired.length}
-          expText={getProductWord(expDates.expired.length, currentLanguage)}
+          emoji="🥬"
+          bgColor="bg-[#EAF3E3]"
+          textColor="text-[#59744D]"
+          status={t("expDateStats.fresh")}
+          amount={expDates.fresh.length}
+          expText={getProductWord(expDates.fresh.length, currentLanguage)}
         >
-          <span className="font-bold">{t("expDateStats.checkFridge")}</span>
+          <span>{t("expDateStats.lastAdded")}</span>
+
+          <span className="font-bold">
+            {theLastAdded?.name[currentLanguage]}
+          </span>
         </ExpDateCard>
       )}
     </div>

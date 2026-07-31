@@ -32,7 +32,7 @@ export default function ExpDateCard({
         </span>
       </div>
       <div>
-        <span className="text-[28px] md:text-lg font-bold mr-2">{amount}</span>
+        <span className="text-[28px] md:text-[20px] font-bold mr-2">{amount}</span>
         <span className="text-[20px] font-bold md:text-[14px]">{expText}</span>
       </div>
       <div className="flex text-[14px] flex-col md:text-[12px]  ">

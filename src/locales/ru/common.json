@@ -18,6 +18,7 @@
     "searchBar": "Начните вводить название",
     "productExpDate": "Срок годности",
     "calendarAriaLabel": "Откройте календарь и выберите дату",
+    "calendarLabel": "Календарь, {{month}}",
     "errors": {
       "product": "Выберите продукт <strong>из списка</strong>",
       "date": "Введите срок годности продукта"

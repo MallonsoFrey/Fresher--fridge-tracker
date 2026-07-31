@@ -17,6 +17,7 @@
     "searchBar": "Type a product name",
     "productExpDate": "Expiration date",
     "calendarAriaLabel": "Open the calendar and select a date",
+    "calendarLabel": "Calendar, {{month}}",
     "errors": {
       "product": "Select a product from <strong>the list</strong>",
       "date": "Enter expiration date"
@@ -28,7 +29,7 @@
     "filters": {
       "all": "All",
       "fresh": "Fresh",
-      "soon": "Expiring soon",
+      "soon": "Soon",
       "expired": "Expired"
     }
   },

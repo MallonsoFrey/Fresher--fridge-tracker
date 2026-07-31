@@ -1,14 +1,16 @@
 import React from "react";
+import type { MouseEventHandler } from "react";
 
 type SvgComponentProps = {
-  onDeleteProduct: () => void;
+  onClick: MouseEventHandler<SVGSVGElement>;
+  className?: string;
 };
 
-const DeleteIcon: React.FC<SvgComponentProps> = ({ onDeleteProduct }) => {
+const DeleteIcon: React.FC<SvgComponentProps> = ({ onClick, className }) => {
   return (
     <svg
-      onClick={onDeleteProduct}
-      className="h-4 w-4 hover:fill-[#98a292] cursor-pointer"
+      onClick={onClick}
+      className={`${className} h-4 w-4 hover:fill-[#98a292] cursor-pointer`}
       fill="#687063"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"

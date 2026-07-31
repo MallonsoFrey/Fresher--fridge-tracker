@@ -35,8 +35,12 @@ input:active {
   fill: #4f574d !important;
 }
 
-.rdp-selected .rdp-day_button {
+.rdp-selected .rdp-day_button,
+.rdp-selected .rdp-day_button:hover,
+.rdp-selected .rdp-day_button:focus,
+.rdp-selected .rdp-day_button:focus-visible {
   border: 2px solid #4f574d !important;
+  outline: none;
 }
 
 .rdp-today:not(.rdp-outside) {

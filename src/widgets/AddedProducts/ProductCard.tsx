@@ -67,7 +67,7 @@ export default function ProductCard({
             >
               {statusText}
             </span>
-            <DeleteIcon onDeleteProduct={() => onDeleteProduct(product.id)} />
+            <DeleteIcon onClick={() => onDeleteProduct(product.id)} />
           </div>
         </div>
         <span className="text-xs">{expiresText}</span>

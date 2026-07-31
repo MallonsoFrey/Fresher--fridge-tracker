@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { maskDateInput } from "@/utils/maskDateInput";
 import { format, isValid, parse } from "date-fns";
 import { DayPicker, type Locale } from "react-day-picker";
+import { useTranslation } from "react-i18next";
 import "react-day-picker/dist/style.css";
 import CalendarButton from "@/components/CalendarButton";
 
@@ -29,6 +30,7 @@ export default function DateInput({
   const lastValidDateInputRef = useRef("");
   const [dateValue, setDateValue] = useState("");
   const [month, setMonth] = useState(new Date());
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (!resetKey) return;
@@ -70,7 +72,11 @@ export default function DateInput({
   };
 
   const toggleCalendar = () => setIsCalendarOpen((prev) => !prev);
-  const calendarLabel = `Calendar, ${format(month, "MMMM yyyy")}`;
+  const calendarLabel = t("addProduct.calendarLabel", {
+    month: format(month, "dd MMMM yyyy", {
+      locale,
+    }),
+  });
 
   const handleDayPickerSelect = (date: Date | undefined) => {
     if (!date) {
@@ -81,6 +87,7 @@ export default function DateInput({
     }
 
     setSelectedDate(date);
+    setMonth(date);
     const masked = format(date, "dd/MM/yyyy");
     lastValidDateInputRef.current = masked;
     setDateValue(masked);

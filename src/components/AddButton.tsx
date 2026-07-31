@@ -1,16 +1,8 @@
-type AddButtonProps = {
-  addedProductsLength: number;
-  onClick: () => void;
-};
-
-export default function AddButton({
-  addedProductsLength,
-  onClick,
-}: AddButtonProps) {
+export default function AddButton({ addProduct }: { addProduct: () => void }) {
   return (
     <button
-      className={`md:hidden ${addedProductsLength > 1 ? "" : "hidden"} block fixed z-40 bottom-4 right-4 h-20 w-20 opacity-[0.8]`}
-      onClick={onClick}
+      onClick={addProduct}
+      className="cursor-pointer md:hidden h-16 w-16 opacity-[0.8]"
     >
       <svg
         viewBox="-2.4 -2.4 28.80 28.80"
