@@ -2,12 +2,15 @@ import { useTranslation, Trans } from "react-i18next";
 
 export default function EmptyFridge({
   setSearchFirstProduct,
+  setIsAddProductOpen,
 }: {
   setSearchFirstProduct: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsAddProductOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { t } = useTranslation();
 
   const handleAddFirstProduct = () => {
+    if (setIsAddProductOpen) setIsAddProductOpen(true);
     setSearchFirstProduct(true);
   };
 

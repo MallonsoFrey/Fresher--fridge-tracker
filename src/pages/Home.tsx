@@ -27,7 +27,7 @@ export default function Home() {
           <ExpDateStats /> <AddedProducts />
         </div>
       ) : (
-        <EmptyFridge setSearchFirstProduct={setSearchFirstProduct} />
+        <EmptyFridge setSearchFirstProduct={setSearchFirstProduct} setIsAddProductOpen={setIsAddProductOpen}/>
       )}
       {isMobile && isAddProductOpen ? (
         <AddProductModal
