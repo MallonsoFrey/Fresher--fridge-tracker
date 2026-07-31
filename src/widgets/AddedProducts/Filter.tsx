@@ -15,7 +15,7 @@ export default function Filter({
   addProduct,
 }: FilterProps) {
   return (
-    <ul className="md:text-[12px] items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA]   flex gap-3 justify-center">
+    <ul className="md:text-[12px] w-full items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA]   flex gap-3 justify-center">
       {Object.entries(filters).map(([key, label]) => (
         <li
           key={key}
