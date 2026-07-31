@@ -1,8 +1,14 @@
-export default function AddButton({ addProduct }: { addProduct: () => void }) {
+export default function AddButton({
+  addProduct,
+  className,
+}: {
+  addProduct: () => void;
+  className: string;
+}) {
   return (
     <button
       onClick={addProduct}
-      className="cursor-pointer md:hidden h-16 w-16 opacity-[0.8]"
+      className={`${className} cursor-pointer md:hidden h-16 w-16 opacity-[0.8]`}
     >
       <svg
         viewBox="-2.4 -2.4 28.80 28.80"

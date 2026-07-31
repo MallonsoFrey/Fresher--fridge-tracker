@@ -56,7 +56,7 @@ export default function AddedProducts() {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 z-10 bg-[#f6f4ee] p-3 md:p-0 md:static w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
+      <div className="shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none fixed bottom-0 left-0 z-10 bg-[#f6f4ee] p-2 md:p-0 md:static w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
         {addedProducts.length > 0 && (
           <>
             <Filter

@@ -15,7 +15,7 @@ export default function Filter({
   addProduct,
 }: FilterProps) {
   return (
-    <ul className="md:text-[12px] w-full items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA]   flex gap-3 justify-center">
+    <ul className="w-full md:text-[12px] items-center leading-none rounded-3xl bg-[#F6F4EE] border-[#F4F2ECFA] flex gap-1 md:gap-3 md:justify-center">
       {Object.entries(filters).map(([key, label]) => (
         <li
           key={key}
@@ -28,7 +28,10 @@ export default function Filter({
         </li>
       ))}
       <li>
-        <AddButton addProduct={() => addProduct(true)} />
+        <AddButton
+          className={"justify-self-end"}
+          addProduct={() => addProduct(true)}
+        />
       </li>
     </ul>
   );
