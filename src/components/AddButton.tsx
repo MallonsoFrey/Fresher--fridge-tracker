@@ -1,13 +1,17 @@
 export default function AddButton({
   addProduct,
   className,
+  ariaLabel = "Add product",
 }: {
   addProduct: () => void;
   className: string;
+  ariaLabel?: string;
 }) {
   return (
     <button
+      type="button"
       onClick={addProduct}
+      aria-label={ariaLabel}
       className={`${className} cursor-pointer md:hidden h-16 w-16 opacity-[0.8]`}
     >
       <svg

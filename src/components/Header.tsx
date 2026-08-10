@@ -19,9 +19,12 @@ export default function Header() {
         <img
           className="w-[6.5rem] md:w-[140px]"
           src={FresherLogo}
-          alt="brand logo"
+          alt="Fresher brand logo"
         />
-        <span className="flex bg-[#EEF2E9] select-none w-fit rounded-[100px] pt-3">
+        <span
+          className="flex bg-[#EEF2E9] select-none w-fit rounded-[100px] pt-3"
+          aria-hidden="true"
+        >
           🥬
         </span>
       </header>

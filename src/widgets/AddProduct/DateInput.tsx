@@ -119,8 +119,8 @@ export default function DateInput({
         {inputLabel}
       </label>
       <input
+        id="expiry-date"
         className="w-full h-12 px-4 md:text-sm text-[#4F574D] placeholder:text-[#4f574dbd] bg-[#F6F4EE] rounded-[24px]"
-        id="date-input"
         type="text"
         value={dateValue}
         placeholder={currentLanguage === "ru" ? "дд/мм/гггг" : "dd/mm/yyyy"}

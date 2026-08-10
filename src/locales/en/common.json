@@ -69,7 +69,22 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "add": "Add"
+    "add": "Add",
+    "close": "Close",
+    "showMore": "Show more products",
+    "showLess": "Show fewer products",
+    "deleteProduct": "Delete product",
+    "clearSearch": "Clear search",
+    "scrollToTop": "Scroll to top",
+    "switchToRussian": "Switch language to Russian",
+    "switchToEnglish": "Switch language to English",
+    "addProduct": "Add product"
+  },
+  "addedProducts": {
+    "title": "In your fridge",
+    "search": "Search...",
+    "searchAriaLabel": "Search products",
+    "screenReaderResults": "Showing {{count}} products"
   },
   "date": {
     "today": "Today"

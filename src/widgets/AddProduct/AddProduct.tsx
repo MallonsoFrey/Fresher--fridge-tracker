@@ -93,10 +93,13 @@ export default function AddProduct({
           <DeleteButton
             className={"absolute top-5 right-5 h-8 w-8"}
             onClick={() => setIsAddProductOpen(false)}
+            ariaLabel={t("buttons.close")}
           />
         )}
         <div className="mb-5">
-          <h2 className="text-2xl font-bold">{t("addProduct.title")}</h2>
+          <h2 id="add-product-modal-title" className="text-2xl font-bold">
+            {t("addProduct.title")}
+          </h2>
           <p className="text-xs">{t("addProduct.subtitle")}</p>
         </div>
 
@@ -135,6 +138,7 @@ export default function AddProduct({
           ) : null}
         </div>
         <button
+          type="button"
           onClick={() => {
             validateAndSave();
           }}

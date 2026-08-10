@@ -11,6 +11,7 @@ export default function CalendarButton({
 }: CalendarButtonProps) {
   return (
     <button
+      type="button"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();

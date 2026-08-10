@@ -1,12 +1,21 @@
 import { useLanguage } from "@/utils/useLanguage";
+import { useTranslation } from "react-i18next";
 
 export default function LanguageToggle() {
   const { currentLanguage, changeLanguage } = useLanguage();
+  const { t } = useTranslation();
   const isEnglish = currentLanguage === "en";
 
   return (
     <div className="absolute md:-right-7 md:top-5 right-5 top-20 outline-none">
       <button
+        type="button"
+        aria-pressed={isEnglish}
+        aria-label={
+          isEnglish
+            ? t("buttons.switchToRussian")
+            : t("buttons.switchToEnglish")
+        }
         onClick={() => changeLanguage()}
         className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors 
       bg-gray-300"

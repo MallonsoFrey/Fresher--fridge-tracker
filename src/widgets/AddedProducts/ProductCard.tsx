@@ -56,7 +56,9 @@ export default function ProductCard({
       className="shadow-sm md:min-w-[280px] md:max-w-[300px] text-left w-full h-auto flex items-center gap-3 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[_rgba(255,255,255,0.98)] p-3 text-sm"
     >
       <div className="select-none w-fit rounded-[100px] p-4 bg-[_rgba(236,242,230,0.9)]">
-        <span className="flex">{product.emoji}</span>
+        <span className="flex" aria-hidden="true">
+          {product.emoji}
+        </span>
       </div>
       <div className="flex flex-col gap-1 w-full leading-none">
         <div className="flex justify-between items-center">
@@ -67,7 +69,10 @@ export default function ProductCard({
             >
               {statusText}
             </span>
-            <DeleteButton onClick={() => onDeleteProduct(product.id)} />
+            <DeleteButton
+              onClick={() => onDeleteProduct(product.id)}
+              ariaLabel={t("buttons.deleteProduct")}
+            />
           </div>
         </div>
         <span className="text-xs">{expiresText}</span>

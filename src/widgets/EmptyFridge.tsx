@@ -36,19 +36,19 @@ export default function EmptyFridge({
         <ul className="list-none list-inside flex gap-1 justify-center flex-wrap text-left">
           <li className="shadow-sm text-left w-[150px] flex items-center gap-3 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[_rgba(255,255,255,0.98)] p-2 text-sm">
             <div className="select-none w-fit rounded-[100px] p-2 bg-[_rgba(236,242,230,0.9)]">
-              <span className="flex">🥛</span>
+              <span className="flex" aria-hidden="true">🥛</span>
             </div>
             {t("emptyFridge.products.milk")}
           </li>
           <li className="shadow-sm text-left w-[150px] flex items-center gap-3 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[_rgba(255,255,255,0.98)] p-2 text-sm">
             <div className="select-none w-fit rounded-[100px] p-2 bg-[_rgba(236,242,230,0.9)]">
-              <span className="flex">🥚</span>
+              <span className="flex" aria-hidden="true">🥚</span>
             </div>
             {t("emptyFridge.products.eggs")}
           </li>
           <li className="shadow-sm text-left w-[150px] flex items-center gap-3 border-[#F4F2ECFA] border-2 rounded-[24px] bg-[_rgba(255,255,255,0.98)] p-2 text-sm">
             <div className="select-none w-fit rounded-[100px] p-2 bg-[_rgba(236,242,230,0.9)]">
-              <span className="flex">🧀</span>
+              <span className="flex" aria-hidden="true">🧀</span>
             </div>
             {t("emptyFridge.products.cheese")}
           </li>

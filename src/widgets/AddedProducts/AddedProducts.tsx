@@ -90,6 +90,11 @@ export default function AddedProducts() {
         <h2 className="text-[20px]   font-bold flex justify-between">
           {t("addedProducts.title")}
         </h2>
+        <p className="sr-only" aria-live="polite">
+          {t("addedProducts.screenReaderResults", {
+            count: searchedProducts.length,
+          })}
+        </p>
         <div className="grid md:min-w-[613px] md:grid-cols-2 gap-2 flex-col md:flex-row">
           {searchedProducts.length > 0 &&
             searchedProducts.slice(0, visibleCount).map((product) => {
@@ -103,8 +108,14 @@ export default function AddedProducts() {
             })}
           {searchedProducts.length > ITEMS_PER_PAGE && (
             <button
+              type="button"
               className="md:col-span-2 flex justify-center"
               onClick={onShowMore}
+              aria-label={
+                visibleCount >= searchedProducts.length
+                  ? t("buttons.showLess")
+                  : t("buttons.showMore")
+              }
             >
               <svg
                 className={`${visibleCount >= searchedProducts.length ? "rotate-180" : ""} cursor-pointer transition-all duration-300 hover:scale-90 col-span-2 h-8 w-8`}
