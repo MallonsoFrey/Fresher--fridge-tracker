@@ -27,9 +27,6 @@ export default function DeleteProductModal({
       aria-labelledby="delete-product-modal-title"
     >
       <div className="flex mx-5 gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
-        <h2 id="delete-product-modal-title" className="font-bold">
-          {t("deleteProductModal.title")}
-        </h2>
         <p>{t("deleteProductModal.description")}</p>
         <div className="flex justify-end gap-3 mt-4">
           <button
