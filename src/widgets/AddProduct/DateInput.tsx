@@ -30,7 +30,7 @@ export default function DateInput({
   const lastValidDateInputRef = useRef("");
   const [dateValue, setDateValue] = useState("");
   const [month, setMonth] = useState(new Date());
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!resetKey) return;
@@ -115,7 +115,7 @@ export default function DateInput({
 
   return (
     <div ref={calendarRef} className="relative flex flex-col gap-2">
-      <label htmlFor="expiry-date" className="text-sm   font-bold">
+      <label htmlFor="date-input" className="text-sm font-bold">
         {inputLabel}
       </label>
       <input

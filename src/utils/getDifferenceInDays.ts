@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 import { ru, enGB } from "date-fns/locale";
 
 export default function getDifferenceInDays(
@@ -9,8 +9,7 @@ export default function getDifferenceInDays(
 
   const currentDate = new Date();
 
-  const timeDif =
-    (expDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+  const timeDif = differenceInCalendarDays(expDate, currentDate);
 
   const difInDays = Math.ceil(timeDif);
 

@@ -1,13 +1,13 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
-import type { ProductItem } from "@/data/products";
+import type { ProductCatalogItem } from "@/data/products";
 
 type ProductInputProps = {
   firstSearch: React.Ref<HTMLInputElement> | null;
   placeholder: string;
   labelName: string;
-  currentLanguage: keyof ProductItem["name"];
-  productItems: ProductItem[];
-  setSelectedProduct: (arg: ProductItem | null) => void;
+  currentLanguage: keyof ProductCatalogItem["name"];
+  productItems: ProductCatalogItem[];
+  setSelectedProduct: (arg: ProductCatalogItem | null) => void;
   resetKey: number;
 };
 
@@ -24,14 +24,14 @@ export default function ProductInput({
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const chooseSuggestion = useCallback((p: ProductItem) => {
+  const chooseSuggestion = useCallback((p: ProductCatalogItem) => {
     setProductName(p.name[currentLanguage]);
     setSelectedProduct(p);
     setIsSuggestionsOpen(false);
     setActiveIndex(-1);
   }, [currentLanguage, setSelectedProduct]);
 
-  const productSuggestions: ProductItem[] = useMemo(() => {
+  const productSuggestions: ProductCatalogItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
 
     if (!q) return [];

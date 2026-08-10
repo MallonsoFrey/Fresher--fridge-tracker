@@ -1,8 +1,9 @@
 import raw from "./products.json";
 
 export type StorageLocation = "fridge" | "freezer";
+export type ExpirationStatus = "expired" | "soon" | "fresh";
 
-export type ProductItem = {
+export type ProductCatalogItem  = {
   id: string;
   emoji: string;
   name: {
@@ -13,19 +14,16 @@ export type ProductItem = {
   storage: StorageLocation[];
 };
 
-export type AddedProductItem = ProductItem & {
+export type ProductsDataset = {
+  version: number;
+  items: ProductCatalogItem[];
+};
+
+export const catalog: ProductsDataset = raw as ProductsDataset;
+export const productItems: ProductCatalogItem[] = catalog.items;
+
+export type AddedProductItem = ProductCatalogItem  & {
   id: string;
   expDate: Date;
   addedDate: Date;
 };
-
-export type ProductsDataset = {
-  version: number;
-  locale: "ru" | "en";
-  items: ProductItem[];
-};
-
-export type ExpirationStatus = "expired" | "soon" | "fresh";
-
-export const products = raw as ProductsDataset;
-export const productItems: ProductItem[] = products.items;

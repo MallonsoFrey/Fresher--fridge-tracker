@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "react-day-picker/dist/style.css";
 import { enGB, ru } from "date-fns/locale";
-import { productItems, type ProductItem } from "@/data/products";
+import { productItems, type ProductCatalogItem } from "@/data/products";
 import { useAddedProductStore } from "@/store/productStore";
 import { useTranslation, Trans } from "react-i18next";
 import { useLanguage } from "@/utils/useLanguage";
@@ -28,9 +28,8 @@ export default function AddProduct({
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isExpiredToSave, setIsExpiredToSave] = useState(false);
   const [resetKey, setResetKey] = useState(0);
-  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
-    null,
-  );
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProductCatalogItem | null>(null);
   const firstSearch = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Errors>({});
   const cleanErrors = () => {
@@ -54,7 +53,7 @@ export default function AddProduct({
     return () => window.clearTimeout(timeoutId);
   }, [searchFirstProduct, setSearchFirstProduct]);
 
-  const saveProduct = (product: ProductItem, date: Date) => {
+  const saveProduct = (product: ProductCatalogItem, date: Date) => {
     addProduct({
       ...product,
       expDate: date,
@@ -96,7 +95,9 @@ export default function AddProduct({
           />
         )}
         <div className="mb-5">
-          <h2 className="text-2xl font-bold">{t("addProduct.title")}</h2>
+          <h2 id="add-product-title" className="text-2xl font-bold">
+            {t("addProduct.title")}
+          </h2>
           <p className="text-xs">{t("addProduct.subtitle")}</p>
         </div>
 
