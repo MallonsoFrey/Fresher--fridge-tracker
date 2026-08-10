@@ -32,7 +32,9 @@
       "fresh": "Свежее",
       "soon": "Скоро",
       "expired": "Испортилось"
-    }
+    },
+    "searchAriaLabel": "Поиск продуктов",
+    "screenReaderResults": "Показано {{count}} продуктов"
   },
   "productCard": {
     "status": {
@@ -70,7 +72,16 @@
     "save": "Сохранить",
     "cancel": "Отменить",
     "delete": "Удалить",
-    "add": "Добавить"
+    "add": "Добавить",
+    "close": "Закрыть",
+    "showMore": "Показать больше продуктов",
+    "showLess": "Показать меньше продуктов",
+    "deleteProduct": "Удалить продукт",
+    "clearSearch": "Очистить поиск",
+    "scrollToTop": "Прокрутить вверх",
+    "switchToRussian": "Переключить язык на русский",
+    "switchToEnglish": "Переключить язык на английский",
+    "addProduct": "Добавить продукт"
   },
   "date": {
     "today": "Сегодня"

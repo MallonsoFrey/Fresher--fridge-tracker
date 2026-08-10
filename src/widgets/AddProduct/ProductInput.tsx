@@ -101,7 +101,10 @@ export default function ProductInput({
         {labelName}
       </label>
       <input
+        id="product-name"
         role="combobox"
+        aria-haspopup="listbox"
+        aria-autocomplete="list"
         aria-expanded={isSuggestionsOpen}
         aria-controls="product-suggestions"
         aria-activedescendant={

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import scrollUp from "@/utils/scrollUp";
-import { useAddedProductStore } from "@/store/productStore";
+import { useTranslation } from "react-i18next";
 
 const GoUpButton = () => {
   const [isShown, setIsShown] = useState(false);
-  const addedProducts = useAddedProductStore((state) => state.addedProducts);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,13 +20,17 @@ const GoUpButton = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <button
-      className={`${isShown && addedProducts.length > 0 ? "block" : "hidden"} shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none bg-[#f6f4ee] p-3 rounded-[24px] fixed bottom-32 right-2 z-10 md:bottom-5 md:right-5`}
+      type="button"
+      aria-label={t("buttons.scrollToTop")}
+      className={`${isShown ? "block" : "hidden"} shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none bg-[#f6f4ee] p-3 rounded-[24px] fixed bottom-32 right-2 z-10 md:bottom-5 md:right-5`}
       onClick={onGoUp}
     >
       <svg
-        className="rotate-180 cursor-pointer transition-all duration-300 hover:scale-90 col-span-2 h-8 w-8"
+        className="rotate-180 transition-all duration-300 hover:scale-90 col-span-2 h-8 w-8"
         fill="#687063"
         viewBox="0 0 32 32"
         version="1.1"

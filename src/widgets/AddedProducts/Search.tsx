@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 type SearchProps = {
   searchedProduct: string;
   setSearchedProduct: (search: string) => void;
@@ -9,6 +11,8 @@ export default function Search({
   setSearchedProduct,
   placeholder,
 }: SearchProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="relative w-full md:flex-1 flex justify-start items-center">
       <svg
@@ -34,29 +38,36 @@ export default function Search({
           ></path>
         </g>
       </svg>
-      <svg
-        onClick={() => setSearchedProduct("")}
-        className="absolute right-3 h-4 w-4 hover:fill-[#98a292] cursor-pointer"
-        fill="#687063"
-        viewBox="0 0 32 32"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+       type="button"
+       onClick={() => setSearchedProduct("")}
+       aria-label={t("buttons.clearSearch")}
+       className="absolute right-3 h-4 w-4 hover:text-[#98a292]"
       >
-        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <path d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5 c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4 C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z"></path>{" "}
-        </g>
-      </svg>
+       <svg
+         className="h-4 w-4"
+         fill="#687063"
+         viewBox="0 0 32 32"
+         xmlns="http://www.w3.org/2000/svg"
+       >
+         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+         <g
+           id="SVGRepo_tracerCarrier"
+           strokeLinecap="round"
+           strokeLinejoin="round"
+         ></g>
+         <g id="SVGRepo_iconCarrier">
+           <path d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5 c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4 C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z"></path>
+         </g>
+       </svg>
+      </button>
       <input
-        className="border-[#F4F2ECFA] text-base border-2 rounded-[24px] ml-7 bg-transparent w-full h-8 pl-3"
-        type="text"
-        placeholder={placeholder}
-        value={searchedProduct}
-        onChange={(e) => setSearchedProduct(e.target.value)}
+       className="border-[#F4F2ECFA] text-base border-2 rounded-[24px] ml-7 bg-transparent w-full h-8 pl-3"
+       type="text"
+       placeholder={placeholder}
+       aria-label={t("addedProducts.searchAriaLabel")}
+       value={searchedProduct}
+       onChange={(e) => setSearchedProduct(e.target.value)}
       />
     </div>
   );

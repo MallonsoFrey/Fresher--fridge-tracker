@@ -92,6 +92,7 @@ export default function AddProduct({
           <DeleteButton
             className={"absolute top-5 right-5 h-8 w-8"}
             onClick={() => setIsAddProductOpen(false)}
+            ariaLabel={t("buttons.close")}
           />
         )}
         <div className="mb-5">
@@ -136,6 +137,7 @@ export default function AddProduct({
           ) : null}
         </div>
         <button
+          type="button"
           onClick={() => {
             validateAndSave();
           }}
