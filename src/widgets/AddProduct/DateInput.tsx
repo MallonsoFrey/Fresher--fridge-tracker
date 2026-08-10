@@ -132,7 +132,7 @@ export default function DateInput({
         calendarAriaLabel={calendarAriaLabel}
       />
       {isCalendarOpen && (
-        <div className="absolute z-50 md:mt-2 w-max rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg p-2 top-full left-0">
+        <div className="absolute z-50 md:mt-2 w-max rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg p-2 md:top-full left-0">
           <DayPicker
             locale={locale}
             weekStartsOn={1}

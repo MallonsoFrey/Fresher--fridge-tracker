@@ -10,7 +10,7 @@ export default function CalendarButton({
   calendarAriaLabel,
 }: CalendarButtonProps) {
   return (
-    <span
+    <button
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -36,6 +36,6 @@ export default function CalendarButton({
           ></path>
         </g>
       </svg>
-    </span>
+    </button>
   );
 }

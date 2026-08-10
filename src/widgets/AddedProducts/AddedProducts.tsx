@@ -22,6 +22,9 @@ export default function AddedProducts() {
   const { currentLanguage } = useLanguage();
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
 
+  const ITEMS_PER_PAGE = 6;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
   function onDeleteProduct(productId: string) {
     setIsToDelete(true);
     setProductIdToDelete(productId);
@@ -47,6 +50,16 @@ export default function AddedProducts() {
         .includes(searchedProduct.toLowerCase()),
     ) ?? [];
 
+  const onShowMore = () => {
+    if (visibleCount < searchedProducts.length) {
+      setVisibleCount((prev) =>
+        Math.min(prev + ITEMS_PER_PAGE, searchedProducts.length),
+      );
+    } else {
+      setVisibleCount(ITEMS_PER_PAGE);
+    }
+  };
+
   const filters: Record<FilterType, string> = {
     all: t("addedProducts.filters.all"),
     fresh: t("addedProducts.filters.fresh"),
@@ -56,7 +69,7 @@ export default function AddedProducts() {
 
   return (
     <>
-      <div className="shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none fixed bottom-0 left-0 z-10 bg-[#f6f4ee] p-2 md:p-0 md:static w-full md:w-fit text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-3">
+      <div className="shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none fixed bottom-0 left-0 z-10 bg-[#f6f4ee] md:bg-transparent p-2 pb-5 md:p-0 md:static w-full text-[14px] flex flex-col md:grid md:grid-cols-[3fr_2fr] gap-2">
         {addedProducts.length > 0 && (
           <>
             <Filter
@@ -73,16 +86,13 @@ export default function AddedProducts() {
           </>
         )}
       </div>
-      <div className="relative flex gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
+      <div className="md:mb-20 relative flex gap-3 flex-col p-5 bg-[#F6F4EE] border-[#F4F2ECFA] border-2 rounded-[24px]">
         <h2 className="text-[20px]   font-bold flex justify-between">
           {t("addedProducts.title")}
-          {/* <span className="bg-[#EDF2E7] rounded-full py-2 px-4 text-sm">
-            {addedProducts.length > 0 ? addedProducts.length : 0}
-          </span> */}
         </h2>
         <div className="grid md:min-w-[613px] md:grid-cols-2 gap-2 flex-col md:flex-row">
           {searchedProducts.length > 0 &&
-            searchedProducts.map((product) => {
+            searchedProducts.slice(0, visibleCount).map((product) => {
               return (
                 <ProductCard
                   key={product.id}
@@ -91,6 +101,30 @@ export default function AddedProducts() {
                 />
               );
             })}
+          {searchedProducts.length > ITEMS_PER_PAGE && (
+            <button
+              className="md:col-span-2 flex justify-center"
+              onClick={onShowMore}
+            >
+              <svg
+                className={`${visibleCount >= searchedProducts.length ? "rotate-180" : ""} cursor-pointer transition-all duration-300 hover:scale-90 col-span-2 h-8 w-8`}
+                fill="#687063"
+                viewBox="0 0 32 32"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M0 16c0 8.837 7.163 16 16 16s16-7.163 16-16c0-8.836-7.163-16-16-16s-16 7.163-16 16zM30.032 16c0 7.72-6.312 14-14.032 14s-14-6.28-14-14 6.28-14 14-14 14.032 6.28 14.032 14zM14.989 8.99v11.264l-3.617-3.617c-0.39-0.39-1.024-0.39-1.414 0s-0.39 1.023 0 1.414l6.063 5.907 6.063-5.907c0.195-0.195 0.293-0.451 0.293-0.707s-0.098-0.512-0.293-0.707c-0.39-0.39-1.023-0.39-1.414 0l-3.68 3.68v-11.326c0-0.553-0.448-1-1-1s-1.001 0.447-1.001 1z"></path>{" "}
+                </g>
+              </svg>
+            </button>
+          )}
         </div>
         {isToDelete && productIdToDelete && (
           <DeleteProductModal

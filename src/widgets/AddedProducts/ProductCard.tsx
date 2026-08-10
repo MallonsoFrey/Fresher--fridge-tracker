@@ -2,7 +2,7 @@ import { type AddedProductItem } from "@/data/products";
 import getDayWord from "@/utils/getDayWord";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
-import DeleteIcon from "@/components/DeleteIcon";
+import DeleteButton from "@/components/DeleteButton";
 import getProductStatus from "@/utils/getProductStatus";
 
 type ProductCardProps = {
@@ -67,7 +67,7 @@ export default function ProductCard({
             >
               {statusText}
             </span>
-            <DeleteIcon onClick={() => onDeleteProduct(product.id)} />
+            <DeleteButton onClick={() => onDeleteProduct(product.id)} />
           </div>
         </div>
         <span className="text-xs">{expiresText}</span>

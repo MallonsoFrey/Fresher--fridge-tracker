@@ -6,7 +6,7 @@ type SvgComponentProps = {
   className?: string;
 };
 
-const DeleteIcon: React.FC<SvgComponentProps> = ({ onClick, className }) => {
+const DeleteButton: React.FC<SvgComponentProps> = ({ onClick, className }) => {
   return (
     <svg
       onClick={onClick}
@@ -28,4 +28,4 @@ const DeleteIcon: React.FC<SvgComponentProps> = ({ onClick, className }) => {
   );
 };
 
-export default DeleteIcon;
+export default DeleteButton;

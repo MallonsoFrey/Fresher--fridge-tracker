@@ -9,7 +9,7 @@ import getProductStatus from "@/utils/getProductStatus";
 import DateInput from "./DateInput";
 import ProductInput from "./ProductInput";
 import ExpiredProductModal from "./ExpiredProductModal";
-import DeleteIcon from "@/components/DeleteIcon";
+import DeleteButton from "@/components/DeleteButton";
 
 type Errors = {
   product?: string;
@@ -90,7 +90,7 @@ export default function AddProduct({
         className={`${setIsAddProductOpen ? "flex mx-5 relative" : "hidden"} md:flex w-full h-fit md:max-w-[312px] md:ml-auto flex-col border-[#F4F2ECFA] border-2 rounded-[24px] bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(244,242,236,0.98)_100%)] p-5 md:justify-self-end md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2`}
       >
         {setIsAddProductOpen && (
-          <DeleteIcon
+          <DeleteButton
             className={"absolute top-5 right-5 h-8 w-8"}
             onClick={() => setIsAddProductOpen(false)}
           />

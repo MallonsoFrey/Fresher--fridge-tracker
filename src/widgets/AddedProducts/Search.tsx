@@ -10,7 +10,7 @@ export default function Search({
   placeholder,
 }: SearchProps) {
   return (
-    <div className="relative w-full flex justify-start items-center">
+    <div className="relative w-full md:flex-1 flex justify-start items-center">
       <svg
         className="absolute left-0 pointer-events-none h-6 w-6"
         viewBox="0 0 24 24"

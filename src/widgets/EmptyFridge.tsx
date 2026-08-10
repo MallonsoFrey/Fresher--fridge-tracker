@@ -15,7 +15,7 @@ export default function EmptyFridge({
   };
 
   return (
-    <div className="text-center h-fit w-full flex flex-col justify-center items-center gap-5 p-5">
+    <div className="text-center h-fit w-full flex flex-col justify-center items-center gap-5 p-8">
       <div>
         <h1 className="text-3xl font-bold mb-10">{t("emptyFridge.title")}</h1>
 
