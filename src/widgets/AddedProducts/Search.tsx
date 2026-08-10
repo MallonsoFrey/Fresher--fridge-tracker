@@ -52,7 +52,7 @@ export default function Search({
         </g>
       </svg>
       <input
-        className="border-[#F4F2ECFA] border-2 rounded-[24px] ml-7 bg-transparent w-full h-8 pl-3"
+        className="border-[#F4F2ECFA] text-base border-2 rounded-[24px] ml-7 bg-transparent w-full h-8 pl-3"
         type="text"
         placeholder={placeholder}
         value={searchedProduct}

@@ -21,7 +21,7 @@ const GoUpButton = () => {
 
   return (
     <button
-      className={`${isShown ? "block" : "hidden"} shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none bg-[#f6f4ee] p-3 rounded-[24px] fixed bottom-[140px] right-2 z-10 md:bottom-5 md:right-5`}
+      className={`${isShown ? "block" : "hidden"} shadow-[inset_0_8px_10px_-8px_rgba(0,0,0,0.1)] md:shadow-none bg-[#f6f4ee] p-3 rounded-[24px] fixed bottom-32 right-2 z-10 md:bottom-5 md:right-5`}
       onClick={onGoUp}
     >
       <svg
