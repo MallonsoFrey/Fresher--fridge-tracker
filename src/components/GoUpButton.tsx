@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import scrollUp from "@/utils/scrollUp";
 import { useTranslation } from "react-i18next";
+import { useAddedProductStore } from "@/store/productStore";
 
 const GoUpButton = () => {
   const [isShown, setIsShown] = useState(false);
+  const addedProducts = useAddedProductStore((state) => state.addedProducts);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsShown(window.scrollY > 30);
+      if (addedProducts.length > 0) {
+        setIsShown(window.scrollY > 30);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [addedProducts]);
 
   const onGoUp = () => {
     if (window.scrollY > 30) {
