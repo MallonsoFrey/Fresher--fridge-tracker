@@ -34,7 +34,10 @@
       "expired": "Испортилось"
     },
     "searchAriaLabel": "Поиск продуктов",
-    "screenReaderResults": "Показано {{count}} продуктов"
+    "screenReaderResults": "Показано {{count}} продуктов",
+    "noSoonProducts": "Нет продуктов, срок годности которых скоро истечет",
+    "noExpiredProducts": "Ничего не испортилось :)",
+    "noFreshProducts": "Нет свежих продуктов"
   },
   "productCard": {
     "status": {

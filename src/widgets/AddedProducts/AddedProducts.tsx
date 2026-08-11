@@ -106,6 +106,25 @@ export default function AddedProducts() {
                 />
               );
             })}
+          {searchedProducts.length === 0 && (
+            <div className="md:col-span-2 col-span-1 min-h-36 flex justify-center items-center">
+              {chosenFilter === "soon" && (
+                <p className="text-center text-[#687063]">
+                  {t("addedProducts.noSoonProducts")}
+                </p>
+              )}
+              {chosenFilter === "fresh" && (
+                <p className="text-center text-[#687063]">
+                  {t("addedProducts.noFreshProducts")}
+                </p>
+              )}
+              {chosenFilter === "expired" && (
+                <p className="text-center text-[#687063]">
+                  {t("addedProducts.noExpiredProducts")}
+                </p>
+              )}
+            </div>
+          )}
           {searchedProducts.length > ITEMS_PER_PAGE && (
             <button
               type="button"

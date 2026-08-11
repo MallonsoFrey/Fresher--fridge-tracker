@@ -33,7 +33,10 @@
       "expired": "Expired"
     },
     "searchAriaLabel": "Search products",
-    "screenReaderResults": "Showing {{count}} products"
+    "screenReaderResults": "Showing {{count}} products",
+    "noSoonProducts": "No products are expiring soon",
+    "noExpiredProducts": "Nothing expired :)",
+    "noFreshProducts": "No fresh products"
   },
   "productCard": {
     "status": {
