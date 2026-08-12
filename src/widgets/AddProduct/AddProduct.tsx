@@ -157,6 +157,7 @@ export default function AddProduct({
             cleanErrors();
             saveProduct(selectedProduct, selectedDate);
             setIsExpiredToSave(false);
+            if (setIsAddProductOpen) setIsAddProductOpen(false);
           }}
         />
       )}
