@@ -9,7 +9,28 @@
 ### 🔗 Links
 
 - **Live Demo:** [fresher-mu.vercel.app](https://fresher-mu.vercel.app/)
-- **Репозиторий:** https://github.com/MallonsoFrey/fridge-tracker.git
+- **Repository:** [GitHub](https://github.com/MallonsoFrey/Fresher--fridge-tracker)
+
+---
+
+## Скриншоты
+
+### Основной экран
+
+![Main view placeholder](./public/screenshots/empty-ru.jpg)
+
+### Основной экран - Мобильная версия
+
+![Main view mobile placeholder](./public/screenshots/mobile-empty-ru.jpg)
+
+### Добавленные продукты - Мобильная версия 
+
+![Added products mobile placeholder](./public/screenshots/mobile-added.jpg)
+
+### Форма добавления
+
+![Add product placeholder](./public/screenshots/add.jpg)
+
 
 ## О проекте
 
@@ -54,6 +75,10 @@
 
 - Tailwind CSS
 
+**UI**
+
+- React Day Picker
+
 **State management**
 
 - Zustand
@@ -68,47 +93,22 @@
 - Vercel
 
 **Запуск локально**
-1. Загрузить проект
-
 ```bash
 git clone https://github.com/MallonsoFrey/Fresher--fridge-tracker.git
-```
-
-2. Установить зависимости
-
-```bash
+cd Fresher--fridge-tracker
 npm install
-```
-
-3. Запустить режим разработки
-
-```bash
 npm run dev
 ```
 
-4. Построить продакшн сборку
+### Production build
 
 ```bash
 npm run build
 ```
 
-**Скриншоты / Screenshots**
-
-- Основной экран
-![Main view placeholder](./public/screenshots/empty-ru.jpg)
-
-- Основной экран - mobile
-![Main view mobile placeholder](./public/screenshots/mobile-empty-ru.jpg)
-
-- Добавленные продукты - mobile
-![Added products mobile placeholder](./public/screenshots/mobile-added.jpg)
-
-- Форма добавления
-![Add product placeholder](./public/screenshots/add.jpg)
-
 ---
 
-## Планируемые улучшения
+## План развития
 
 - Рекомендации по рецептам с учетом имеющихся продуктов
 - Напоминания о сроках годности
