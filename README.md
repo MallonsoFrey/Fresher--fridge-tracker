@@ -1,75 +1,111 @@
-# React + TypeScript + Vite
+[🇬🇧 English](README.md) | [🇷🇺 Русский](README.ru.md)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Fresher - Fridge Tracker
 
-Currently, two official plugins are available:
+A simple bilingual app for tracking food expiration dates
+and reducing food waste
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Fresher main page](./public/screenshots/empty-en.jpg)
 
-## React Compiler
+### 🔗 Links
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Live Demo:** [fresher-mu.vercel.app](https://fresher-mu.vercel.app/)
+- **Repository:** https://github.com/MallonsoFrey/fridge-tracker.git
 
-## Expanding the ESLint configuration
+## About the project
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Fresher was created to solve a simple everyday problem:
+it is easy to forget about food products hidden in the fridge
+until they expire.
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+The application helps users quickly understand:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- what products they currently have;
+- which products are expiring soon;
+- which products have already expired.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+**Features**
+
+The interface is intentionally simple and focused on the most
+important information rather than overwhelming the user with data.
+
+- **Multi-language:** interface in Russian and English, switchable via the UI.
+- **Add & Search:** quick product addition and search by name.
+- **Expiry tracking:** product status (fresh/soon/expired) and number of days.
+- **Stats:** cards showing expiry dates and summary metrics.
+- **Responsive UI:** works on mobile and desktop devices.
+
+## Tech Stack
+
+**Core**
+
+- React
+- TypeScript
+- Vite
+
+**Styling**
+
+- Tailwind CSS
+
+**State management**
+
+- Zustand
+- localStorage
+
+**Internationalization**
+
+- i18next / react-i18next
+
+**Deployment**
+
+- Vercel
+
+**Run locally**
+
+1. Download project
+
+```bash
+git clone https://github.com/MallonsoFrey/Fresher--fridge-tracker.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Установить зависимости
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
 ```
 
-# fresher
+2. Запустить режим разработки
+
+```bash
+npm run dev
+```
+
+3. Построить продакшн сборку
+
+```bash
+npm run build
+```
+
+**Screenshots**
+
+- Main view
+![Main view placeholder](./public/screenshots/empty-en.jpg)
+
+- Main view - mobile
+![Main view mobile placeholder](./public/screenshots/mobile-empty-en.jpg)
+
+- Added products - mobile
+![Added products mobile placeholder](./public/screenshots/add-en.jpg)
+
+- Add product
+![Add product placeholder](./public/screenshots/add-en.jpg)
+
+---
+## Future Improvements
+
+- Recipe recommendations based on available products
+- Expiration reminders
+- Barcode scanning
+- Shopping list
+- Product categories
+- User accounts and cloud synchronization
