@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import "react-day-picker/dist/style.css";
 import { enGB, ru } from "date-fns/locale";
-import { productItems, type ProductCatalogItem } from "@/data/products";
+import {
+  productItems,
+  type ProductCatalogItem,
+  type CustomProductItem,
+} from "@/data/products";
 import { useAddedProductStore } from "@/store/productStore";
 import { useTranslation, Trans } from "react-i18next";
 import { useLanguage } from "@/utils/useLanguage";
@@ -28,8 +32,9 @@ export default function AddProduct({
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isExpiredToSave, setIsExpiredToSave] = useState(false);
   const [resetKey, setResetKey] = useState(0);
-  const [selectedProduct, setSelectedProduct] =
-    useState<ProductCatalogItem | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<
+    ProductCatalogItem | CustomProductItem | null
+  >(null);
   const firstSearch = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Errors>({});
   const cleanErrors = () => {
@@ -53,7 +58,10 @@ export default function AddProduct({
     return () => window.clearTimeout(timeoutId);
   }, [searchFirstProduct, setSearchFirstProduct]);
 
-  const saveProduct = (product: ProductCatalogItem, date: Date) => {
+  const saveProduct = (
+    product: ProductCatalogItem | CustomProductItem,
+    date: Date,
+  ) => {
     addProduct({
       ...product,
       expDate: date,

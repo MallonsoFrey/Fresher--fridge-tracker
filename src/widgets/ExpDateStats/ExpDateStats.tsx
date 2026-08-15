@@ -1,5 +1,5 @@
 import { useAddedProductStore } from "@/store/productStore";
-import { type ExpirationStatus, type AddedProductItem } from "@/data/products";
+import { type ExpirationStatus, type AddedProductItem, type CustomAddedProductItem } from "@/data/products";
 import getProductWord from "@/utils/getProductWord";
 import getDayWord from "@/utils/getDayWord";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ export default function ExpDateStats() {
   if (!addedProducts.length) return null;
 
   const expDates = addedProducts.reduce(
-    (acc: Record<ExpirationStatus, AddedProductItem[]>, p) => {
+    (acc: Record<ExpirationStatus, (AddedProductItem | CustomAddedProductItem)[]>, p) => {
       const { isExpired, isSoon } = getProductStatus(new Date(p.expDate));
 
       if (isExpired) {
@@ -36,11 +36,11 @@ export default function ExpDateStats() {
       }
       return acc;
     },
-    {} as Record<ExpirationStatus, AddedProductItem[]>,
+    {} as Record<ExpirationStatus, (AddedProductItem | CustomAddedProductItem)[]>,
   );
   const theLastAdded = expDates.fresh?.at(-1);
 
-  const soonToExpire: AddedProductItem | null = expDates["soon"]
+  const soonToExpire: (AddedProductItem | CustomAddedProductItem) | null = expDates["soon"]
     ? expDates["soon"].length > 1
       ? expDates["soon"]?.sort(
           (a, b) =>

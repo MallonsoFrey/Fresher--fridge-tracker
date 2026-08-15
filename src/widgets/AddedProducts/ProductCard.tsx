@@ -1,4 +1,4 @@
-import { type AddedProductItem } from "@/data/products";
+import { type AddedProductItem, type CustomAddedProductItem } from "@/data/products";
 import getDayWord from "@/utils/getDayWord";
 import getDifferenceInDays from "@/utils/getDifferenceInDays";
 import { useTranslation } from "react-i18next";
@@ -6,7 +6,7 @@ import DeleteButton from "@/components/DeleteButton";
 import getProductStatus from "@/utils/getProductStatus";
 
 type ProductCardProps = {
-  product: AddedProductItem;
+  product: AddedProductItem | CustomAddedProductItem;
   onDeleteProduct: (id: AddedProductItem["id"]) => void;
 };
 

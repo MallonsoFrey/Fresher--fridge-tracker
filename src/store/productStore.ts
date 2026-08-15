@@ -1,14 +1,16 @@
 import { create } from "zustand";
-import { type AddedProductItem } from "@/data/products";
+import { type AddedProductItem, type CustomAddedProductItem } from "@/data/products";
+
+type AddedProduct = AddedProductItem | CustomAddedProductItem;
 
 type AddedProductsType = {
-  addedProducts: AddedProductItem[] | [];
+  addedProducts: AddedProduct[] | [];
 
-  addProduct: (product: AddedProductItem) => void;
+  addProduct: (product: AddedProduct) => void;
   deleteProduct: (productId: string) => void;
 };
 
-const getInitialAddedProducts = (): AddedProductItem[] | [] => {
+const getInitialAddedProducts = (): AddedProduct[] | [] => {
   if (typeof window === "undefined") {
     return [];
   }

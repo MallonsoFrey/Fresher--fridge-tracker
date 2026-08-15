@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
-import type { ProductCatalogItem } from "@/data/products";
+import type { ProductCatalogItem, CustomProductItem } from "@/data/products";
 
 type ProductInputProps = {
   firstSearch: React.Ref<HTMLInputElement> | null;
@@ -7,7 +7,9 @@ type ProductInputProps = {
   labelName: string;
   currentLanguage: keyof ProductCatalogItem["name"];
   productItems: ProductCatalogItem[];
-  setSelectedProduct: (arg: ProductCatalogItem | null) => void;
+  setSelectedProduct: (
+    arg: ProductCatalogItem | CustomProductItem | null,
+  ) => void;
   resetKey: number;
 };
 
@@ -24,12 +26,17 @@ export default function ProductInput({
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const chooseSuggestion = useCallback((p: ProductCatalogItem) => {
-    setProductName(p.name[currentLanguage]);
-    setSelectedProduct(p);
-    setIsSuggestionsOpen(false);
-    setActiveIndex(-1);
-  }, [currentLanguage, setSelectedProduct]);
+  const chooseSuggestion = useCallback(
+    (p: ProductCatalogItem | CustomProductItem) => {
+      setProductName((prevProductName) =>
+        p.name[currentLanguage] ? p.name[currentLanguage] : prevProductName,
+      );
+      setSelectedProduct(p);
+      setIsSuggestionsOpen(false);
+      setActiveIndex(-1);
+    },
+    [currentLanguage, setSelectedProduct],
+  );
 
   const productSuggestions: ProductCatalogItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
@@ -53,7 +60,7 @@ export default function ProductInput({
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (!isSuggestionsOpen || productSuggestions.length === 0) {
+      if (!isSuggestionsOpen) {
         return;
       }
 
@@ -86,6 +93,32 @@ export default function ProductInput({
             break;
         }
       }
+
+      if (productSuggestions.length === 0 && productName.length > 0) {
+        switch (event.key) {
+          case "ArrowDown":
+            event.preventDefault();
+            setActiveIndex(1);
+            break;
+          case "ArrowUp":
+            event.preventDefault();
+            setActiveIndex(-1);
+            break;
+          case "Enter":
+            if (activeIndex !== -1) {
+              event.preventDefault();
+              chooseSuggestion({
+                emoji: "✨",
+                name: { en: productName, ru: productName },
+              });
+            }
+            break;
+          case "Escape":
+            setIsSuggestionsOpen(false);
+            setActiveIndex(-1);
+            break;
+        }
+      }
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -108,9 +141,11 @@ export default function ProductInput({
         aria-expanded={isSuggestionsOpen}
         aria-controls="product-suggestions"
         aria-activedescendant={
-          activeIndex >= 0
+          activeIndex >= 0 && productSuggestions[activeIndex]
             ? `product-suggestion-${productSuggestions[activeIndex].id}`
-            : undefined
+            : activeIndex >= 0
+              ? "custom-product"
+              : undefined
         }
         ref={firstSearch}
         type="text"
@@ -126,29 +161,55 @@ export default function ProductInput({
           window.setTimeout(() => setIsSuggestionsOpen(false), 0);
         }}
       />
-      {isSuggestionsOpen && productSuggestions.length > 0 && (
-        <div
-          id="product-suggestions"
-          role="listbox"
-          className="absolute z-40 top-full mt-2 w-full rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg overflow-hidden"
-        >
-          {productSuggestions.map((p, index) => (
-            <button
-              id={`product-suggestion-${p.id}`}
-              role="option"
-              aria-selected={activeIndex === index}
-              type="button"
-              key={p.id}
-              className={`${activeIndex === index ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => chooseSuggestion(p)}
+      {isSuggestionsOpen ? (
+        productSuggestions.length > 0 ? (
+          <div
+            id="product-suggestions"
+            role="listbox"
+            className="absolute z-40 top-full mt-2 w-full rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg overflow-hidden"
+          >
+            {productSuggestions.map((p, index) => (
+              <button
+                id={`product-suggestion-${p.id}`}
+                role="option"
+                aria-selected={activeIndex === index}
+                type="button"
+                key={p.id}
+                className={`${activeIndex === index ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => chooseSuggestion(p)}
+              >
+                <span>{p.emoji}</span>
+                <span>{p.name[currentLanguage]}</span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          productName.length > 0 && (
+            <div
+              id="custom-product"
+              role="listbox"
+              className="absolute z-40 top-full mt-2 w-full rounded-[16px] border border-[#F6F4EE] bg-white shadow-lg overflow-hidden"
             >
-              <span>{p.emoji}</span>
-              <span>{p.name[currentLanguage]}</span>
-            </button>
-          ))}
-        </div>
-      )}
+              <button
+                role="option"
+                aria-selected={activeIndex === 1}
+                type="button"
+                className={`${activeIndex === 1 ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() =>
+                  chooseSuggestion({
+                    emoji: "✨ ",
+                    name: { en: productName, ru: productName },
+                  })
+                }
+              >
+                <span>{productName}</span>
+              </button>
+            </div>
+          )
+        )
+      ) : null}
     </div>
   );
 }
