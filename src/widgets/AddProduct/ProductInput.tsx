@@ -38,6 +38,24 @@ export default function ProductInput({
     [currentLanguage, setSelectedProduct],
   );
 
+  const onBlur = useCallback(() => {
+    const chosenProduct = productItems.find(
+      (p) =>
+        p.name[currentLanguage].trim().toLowerCase() ===
+        productName.trim().toLowerCase(),
+    );
+
+    if (chosenProduct) {
+      chooseSuggestion(chosenProduct);
+    } else if (productName.trim() !== "") {
+      chooseSuggestion({
+        emoji: "✨",
+        name: { en: productName, ru: productName },
+      });
+    }
+    window.setTimeout(() => setIsSuggestionsOpen(false), 0);
+  }, [currentLanguage, productItems, productName, chooseSuggestion]);
+
   const productSuggestions: ProductCatalogItem[] = useMemo(() => {
     const q = productName.trim().toLowerCase();
 
@@ -58,75 +76,74 @@ export default function ProductInput({
     setSelectedProduct(null);
   }, [resetKey, setSelectedProduct]);
 
+  const suggestions = useMemo(
+    () =>
+      productSuggestions.length > 0
+        ? productSuggestions
+        : productName.length > 0
+          ? [
+              {
+                emoji: "✨",
+                name: {
+                  en: productName,
+                  ru: productName,
+                },
+              },
+            ]
+          : [],
+    [productSuggestions, productName],
+  );
+
   useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (!isSuggestionsOpen) {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isSuggestionsOpen || suggestions.length === 0) {
         return;
       }
 
-      if (productSuggestions.length > 0) {
-        switch (event.key) {
-          case "ArrowUp":
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+
+          setActiveIndex((prev) =>
+            prev >= suggestions.length - 1 ? 0 : prev + 1,
+          );
+
+          break;
+
+        case "ArrowUp":
+          event.preventDefault();
+
+          setActiveIndex((prev) =>
+            prev <= 0 ? suggestions.length - 1 : prev - 1,
+          );
+
+          break;
+
+        case "Enter": {
+          const activeSuggestion =
+            activeIndex >= 0 ? suggestions[activeIndex] : suggestions[0];
+
+          if (activeSuggestion) {
             event.preventDefault();
-            setActiveIndex((prev) => (prev === -1 ? -1 : prev - 1));
-            break;
+            chooseSuggestion(activeSuggestion);
+          }
 
-          case "ArrowDown":
-            event.preventDefault();
-            setActiveIndex((prev) =>
-              prev === productSuggestions.length - 1
-                ? productSuggestions.length - 1
-                : prev + 1,
-            );
-            break;
-
-          case "Enter":
-            if (activeIndex !== -1) {
-              event.preventDefault();
-              chooseSuggestion(productSuggestions[activeIndex]);
-            }
-            break;
-
-          case "Escape":
-            setIsSuggestionsOpen(false);
-            setActiveIndex(-1);
-            break;
+          break;
         }
-      }
 
-      if (productSuggestions.length === 0 && productName.length > 0) {
-        switch (event.key) {
-          case "ArrowDown":
-            event.preventDefault();
-            setActiveIndex(1);
-            break;
-          case "ArrowUp":
-            event.preventDefault();
-            setActiveIndex(-1);
-            break;
-          case "Enter":
-            if (activeIndex !== -1) {
-              event.preventDefault();
-              chooseSuggestion({
-                emoji: "✨",
-                name: { en: productName, ru: productName },
-              });
-            }
-            break;
-          case "Escape":
-            setIsSuggestionsOpen(false);
-            setActiveIndex(-1);
-            break;
-        }
+        case "Escape":
+          setIsSuggestionsOpen(false);
+          setActiveIndex(-1);
+          break;
       }
-    }
+    };
 
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeIndex, productSuggestions, chooseSuggestion, isSuggestionsOpen]);
+  }, [activeIndex, suggestions, chooseSuggestion, isSuggestionsOpen]);
 
   return (
     <div className="relative flex flex-col gap-2 mb-5">
@@ -157,9 +174,7 @@ export default function ProductInput({
           setIsSuggestionsOpen(true);
         }}
         onFocus={() => setIsSuggestionsOpen(true)}
-        onBlur={() => {
-          window.setTimeout(() => setIsSuggestionsOpen(false), 0);
-        }}
+        onBlur={onBlur}
       />
       {isSuggestionsOpen ? (
         productSuggestions.length > 0 ? (
@@ -193,9 +208,9 @@ export default function ProductInput({
             >
               <button
                 role="option"
-                aria-selected={activeIndex === 1}
+                aria-selected={activeIndex === 0}
                 type="button"
-                className={`${activeIndex === 1 ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
+                className={`${activeIndex === 0 ? "bg-[#eaf3e3]" : ""} w-full text-left px-4 py-2 text-sm text-[#4F574D] hover:bg-[#ECF2E6] flex items-center gap-2`}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() =>
                   chooseSuggestion({
